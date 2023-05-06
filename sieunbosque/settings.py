@@ -51,10 +51,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'sieunbosque.urls'
 
+RUTATEMP = BASE_DIR/'app'/'templates'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [RUTATEMP],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
