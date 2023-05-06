@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-@jg^4bx3p53dbass49t&*5f7sw4amqqf31o7biwn82!_kh54ve
 DEBUG = True
 
 ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['sieunbosque.azurewebsites.net']
 
 
 # Application definition
@@ -77,11 +78,14 @@ WSGI_APPLICATION = 'sieunbosque.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sieunbosquedatabase',
+        'USER': 'brayaningsoftware',
+        'PASSWORD': 'u1wg{xM]KQEe]-I',
+        'HOST': 'sieunbosque.mysql.database.azure.com',
+        'PORT': '3306'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
