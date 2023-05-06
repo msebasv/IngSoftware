@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Título del contenido compartido">
+    <meta property="og:description" content="Descripción del contenido compartido">
+    <title>Título de la página</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block body %}{%endblock%}
+    </main>
+
+    <aside>
+        <h2>Anuncios</h2>
+        <ul>
+            <li><a href="#">Anuncio 1</a></li>
+            <li><a href="#">Anuncio 2</a></li>
+            <li><a href="#">Anuncio 3</a></li>
+        </ul>
+    </aside>
+
+    <footer>
+        <p>Derechos reservados © 2023</p>
+    </footer>
+</body>
+
+</html>
