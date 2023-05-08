@@ -1,0 +1,13 @@
+{% extends "html/layouts/base.html"%}
+<h1> Bienvenido a mi página</h1>
+
+{% block body %}
+	<h1>Enviar correo electrónico</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+		<button>
+			save
+		</button>
+	</form>
+{%endblock%}
