@@ -26,4 +26,5 @@ urlpatterns = [
     path('', Login.as_view(), name='index'),
     path('dashboard/', login_required(Dashboard.as_view()), name='dashboard'),
     path('logout/', login_required(logoutUser), name='logout'),
+    path('dashboard/',include('apps.graduates.urls'))
 ]

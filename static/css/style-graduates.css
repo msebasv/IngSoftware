@@ -1,0 +1,63 @@
+.form_graduates {
+	margin-top: 30px;
+	border: 1px solid #ced4da;
+	border-radius: 10px;
+}
+
+.main h2 {
+	font-size: 40px;
+}
+
+.form_graduates .form_graduates_group {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+
+}
+
+.form_graduates .form_graduates_group label {
+	font-size: 24px;
+	font-weight: 400;
+}
+
+.form_graduates .form_graduates_group input {
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+	height: 50px;
+	margin-top: 15px;
+	padding: 5px 5px 5px 20px;
+}
+
+.form_graduates .form_graduates_group select {
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+	height: 60px;
+	margin-top: 15px;
+	padding: 5px 5px 5px 20px;
+}
+
+.form_graduates .form_graduates_group textarea {
+	border: 1px solid #ced4da;
+	border-radius: 5px;
+	margin-top: 15px;
+	padding: 5px 5px 5px 20px;
+}
+
+.form_graduates .form_graduates_group .input_hoja {
+	border: none;
+}
+
+.form_graduates .form_graduates_group select:hover {
+	-webkit-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+	-moz-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+	box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+	border: 2.5px solid #a0bbff;
+	cursor: pointer;
+}
+
+.form_graduates .form_graduates_group input:focus {
+	-webkit-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+	-moz-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+	box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+	border: 2.5px solid #a0bbff;
+}

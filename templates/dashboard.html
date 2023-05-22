@@ -1,87 +1,118 @@
-{% extends 'index.html' %}{% load static %} {% block body %}
-<!--comentario-->{% block dashboard %}
-<div class="layout-content-dashboard">
-  <aside id="left-panel" class="left-panel">
-    <nav class="navbar navbar-expand-sm navbar-default navbar-dashboard">
-      <div id="main-menu" class="main-menu collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li>
-            <a href="{% url 'dashboard' %}"
-              ><i class="menu-icon fa fa-laptop"></i>Inicio
-            </a>
-          </li>
-          <li class="menu-title">Información Personal</li>
-          <li>
-            <a href="URL"><i class="menu-icon fa fa-cogs"></i>Información </a>
-          </li>
-          <li>
-            <a href="URL"><i class="menu-icon fa fa-cogs"></i>Notas </a>
-          </li>
-          <li class="menu-title">Eventos</li>
-        </ul>
-      </div>
-    </nav>
-  </aside>
-  <div id="right-panel" class="right-panel">
-    <header id="header" class="header">
-      <div class="top-left">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/"
-            ><img src={% static 'img/logo_blanco.png' %} alt="Logo"></a
-          >
-          <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
-        </div>
-      </div>
-      <div class="top-right">
-        <div class="header-menu">
-          <div class="text-user-navbar">
-            <p class="user-navbar"><strong>{{ user.username }}</strong></p>
-          </div>
-          <div class="user-area dropdown float-right">
-            <a
-              class="dropdown-toggle active"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-            >
-              <i class="fa fa-user-circle fa-3x"></i>
-            </a>
-            <div class="user-menu dropdown-menu">
-              <a class="nav-link" href="#"
-                ><i class="fa fa-user" disabled></i>{{ user.username }}</a
-              >
-              <a class="nav-link" href="{% url 'logout' %}"
-                ><i class="fa fa-power-off"></i>Logout</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
+{% load static %} <!-- Load static files -->
+
+<!DOCTYPE html>
+<html lang="es"> <!-- HTML document with Spanish language -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="This page is intended for the access and administration of the El Bosque University community">
+    <meta name="keywords" content="sie, unbosque, egresados">
+    <meta name="author" content="Estudiantes universidad el Bosque">
+
+    <title>sieunbosque</title> <!-- Page title -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style-dashboard.css' %}"> <!-- Load external CSS file -->
+    <link rel="stylesheet" href="{% static 'css/style-graduates.css' %}">
+
+
+</head>
+
+<body>
+    <header class="header"> <!-- Header section -->
+        <nav class="header_nav">
+            <ul class="header_list_first">
+                <li><img src="{% static 'img/logo_blanco.png' %}" alt="Universidad el Bosque logo"></li>
+                <!-- University logo image -->
+                <a class="header_list_first_button">
+                    <i class="fa-solid fa-bars"></i> <!-- Hamburger icon for menu -->
+                </a>
+            </ul>
+            <ul class="header_list_second">
+                <li>Admin</li> <!-- Admin label -->
+                <li>
+                    <a class="header_list_second_button"><img src="{% static 'img/profile-women.png' %}"
+                            alt="Usuario imagen">
+                    </a> <!-- User profile image -->
+                    <div class="notifications">3</div> <!-- Notification count -->
+
+            </ul>
+        </nav>
     </header>
-    {% endblock dashboard %} {%block content%}
-    <h2>Hola</h2>
-    {% endblock content%}
-    <div class="content">
-      <div class="clearfix"></div>
-      <footer class="site-footer">
-        <div class="footer-inner bg-white">
-          <div class="row">
-            <div class="col-sm-6">Copyright &copy; 2023</div>
-            <div class="col-sm-6 text-right">Designed with love</div>
-          </div>
-        </div>
-      </footer>
-      <!-- Esto es un comentario -->
+
+    <div class="log_out"> <!-- Logout section -->
+        <ul class="log_out_menu">
+            <li>
+                <a href="{% url 'logout' %}">
+                    <i class="fa-solid fa-person-walking-arrow-right"></i> Cerrar sesión</a>
+                <!-- Logout link with an icon -->
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa-solid fa-hammer"></i> Configuración</a> <!-- Configuration link with an icon -->
+            </li>
+        </ul>
     </div>
-  </div>
-  {% endblock body %} {% block extraJs %}
-  <script src="{% static 'js/main.js' %}"></script>
-  {% endblock extraJs %} {% comment %}
-  <h2>Soy DashBoard</h2>
-  <h1>Inicio sesión de {{ user.username }}</h1>
-  <a class="nav-link" href="{% url 'logout' %}"
-    ><i class="fa fa-power-off"></i>Logout</a
-  >
-  {% endcomment %}
-</div>
+
+    <div class="container"> <!-- Main content container -->
+        <aside class="sidebar"> <!-- Sidebar section -->
+            <nav class="sidebar__nav">
+                <h3>Información general</h3>
+                <ul class="sidebar__list">
+                    <li class="sidebar__item">
+                        <a href="">
+                            <i class="fa-solid fa-house"></i> <!-- Home icon -->
+                            <p>Inicio</p>
+                            <i class="fa-solid fa-caret-right"></i> <!-- Right caret icon -->
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="">
+                            <i class="fa-solid fa-user"></i> <!-- User icon -->
+                            <p>Perfil</p>
+                            <i class="fa-solid fa-caret-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <h3>Opciones</h3>
+                <ul class="sidebar__list">
+                    <li class="sidebar__item">
+                        <a href="">
+                            <i class="fa-solid fa-house"></i>
+                            <p>Inicio</p>
+                            <i class="fa-solid fa-caret-right"></i>
+                        </a>
+                    </li>
+                    <li class="sidebar__item">
+                        <a href="">
+                            <i class="fa-solid fa-user"></i>
+                            <p>Perfil</p>
+                            <i class="fa-solid fa-caret-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main"> <!-- Main content section -->
+            {%block content%}{%endblock content%}
+        </main>
+    </div>
+
+    <footer class="footer"> <!-- Footer section -->
+        <p class="footer__text">© 2023 Universidad el bosque. Vigilada Mineducación. Personería Jurídica otorgada
+            mediante resolución 11153 del 4 de agosto de 1978s.</p> <!-- Copyright text -->
+    </footer>
+
+    <script src="https://kit.fontawesome.com/c58b0ef951.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome script -->
+    <script src="{% static 'js/jquery-3.6.3.min.js' %}"></script> <!-- Load external JavaScript file -->
+    <script src="{% static 'js/main.js' %}"></script> <!-- Load external JavaScript file -->
+</body>
+
+</html>
