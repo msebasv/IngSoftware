@@ -61,3 +61,74 @@
 	box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
 	border: 2.5px solid #a0bbff;
 }
+
+.article_profile{
+	border: 3px solid #C4DFDF;
+	background-color: #E3F4F4;
+	padding: 30px;
+	border-radius: 20px;
+}
+.article_profile .article_profile_photo{
+	display: flex;
+	justify-content: center;
+}
+.article_profile .article_profile_photo img {
+	width: 250px;
+	border: 3px solid #C4DFDF;
+	padding: 20px;
+	border-radius: 20px;
+
+}
+.hr_profile_graduates{
+	width: 95%;
+	height: 4px;
+	background-color: #C4DFDF;
+	border-radius: 3px;
+	margin: 0 auto;
+
+}
+
+.article_profile .article_profile_personal_information {
+	border: 3px solid #C4DFDF;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	padding: 20px;
+	border-radius: 15px;
+
+}
+
+.article_profile .article_profile_employment_data {
+	margin-top: 50px;
+	margin-bottom: 60px;
+	border: 3px solid #C4DFDF;
+	padding: 20px;
+	border-radius: 20px;
+}
+
+.article_profile .article_profile_outher_data {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	border: 3px solid #C4DFDF;
+	padding: 20px;
+	border-radius: 20px;
+}
+.h3_role{
+	text-align: center;
+	margin: 8px;
+	font-weight: 700;
+	font-size: 25px;
+}
+.h3_name{
+	text-align: center;
+	margin: 20px;
+	font-weight: 700;
+	font-size: 35px;
+}
+.h3_title{
+	position: relative;
+	top: 20px;
+	margin-left: 10px;
+	margin-top: 20px;
+	font-weight: 700;
+	font-size: 25px;
+}
