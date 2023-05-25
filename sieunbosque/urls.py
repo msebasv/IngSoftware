@@ -21,10 +21,12 @@ from django.contrib.auth.decorators import login_required
 from apps.user.views import Login, logoutUser
 from apps.app.views import Dashboard
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Login.as_view(), name='index'),
     path('dashboard/', login_required(Dashboard.as_view()), name='dashboard'),
     path('logout/', login_required(logoutUser), name='logout'),
-    path('dashboard/graduates/',include('apps.graduates.urls'))
+    path('dashboard/graduates/',include('apps.graduates.urls')),
+    path('dashboard/administrator/', include(('apps.administrator.urls', 'administrator')))
 ]

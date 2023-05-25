@@ -1,77 +1,15 @@
-.form_graduates {
-	margin-top: 30px;
-	border: 1px solid #ced4da;
-	border-radius: 10px;
-}
-
-.main h2 {
-	font-size: 40px;
-}
-
-.form_graduates .form_graduates_group {
-	display: flex;
-	flex-direction: column;
-	padding: 20px;
-
-}
-
-.form_graduates .form_graduates_group label {
-	font-size: 24px;
-	font-weight: 400;
-}
-
-.form_graduates .form_graduates_group input {
-	border: 1px solid #ced4da;
-	border-radius: 5px;
-	height: 50px;
-	margin-top: 15px;
-	padding: 5px 5px 5px 20px;
-}
-
-.form_graduates .form_graduates_group select {
-	border: 1px solid #ced4da;
-	border-radius: 5px;
-	height: 60px;
-	margin-top: 15px;
-	padding: 5px 5px 5px 20px;
-}
-
-.form_graduates .form_graduates_group textarea {
-	border: 1px solid #ced4da;
-	border-radius: 5px;
-	margin-top: 15px;
-	padding: 5px 5px 5px 20px;
-}
-
-.form_graduates .form_graduates_group .input_hoja {
-	border: none;
-}
-
-.form_graduates .form_graduates_group select:hover {
-	-webkit-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
-	-moz-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
-	box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
-	border: 2.5px solid #a0bbff;
-	cursor: pointer;
-}
-
-.form_graduates .form_graduates_group input:focus {
-	-webkit-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
-	-moz-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
-	box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
-	border: 2.5px solid #a0bbff;
-}
-
-.article_profile{
+.article_profile {
 	border: 3px solid #C4DFDF;
 	background-color: #E3F4F4;
 	padding: 30px;
 	border-radius: 20px;
 }
-.article_profile .article_profile_photo{
+
+.article_profile .article_profile_photo {
 	display: flex;
 	justify-content: center;
 }
+
 .article_profile .article_profile_photo img {
 	width: 250px;
 	border: 3px solid #C4DFDF;
@@ -79,7 +17,8 @@
 	border-radius: 20px;
 
 }
-.hr_profile_graduates{
+
+.hr_profile_graduates {
 	width: 95%;
 	height: 4px;
 	background-color: #C4DFDF;
@@ -112,19 +51,22 @@
 	padding: 20px;
 	border-radius: 20px;
 }
-.h3_role{
+
+.h3_role {
 	text-align: center;
 	margin: 8px;
 	font-weight: 700;
 	font-size: 25px;
 }
-.h3_name{
+
+.h3_name {
 	text-align: center;
 	margin: 20px;
 	font-weight: 700;
 	font-size: 35px;
 }
-.h3_title{
+
+.h3_title {
 	position: relative;
 	top: 20px;
 	margin-left: 10px;

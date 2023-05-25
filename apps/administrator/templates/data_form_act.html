@@ -1,0 +1,35 @@
+{% extends 'dashboard.html' %} {% load static %} {%block content%}
+<h2>Acta</h2>
+<section class="administrator_act">
+  <form action="#" method="post" class="form">
+    <div class="form_group">
+      <label for="InputTituloActa">Título de acta</label>
+      <input
+        type="text"
+        class="input_titulo"
+        placeholder="Ej. Acta de eventos"
+      />
+    </div>
+    <div class="form_group">
+      <label for="InputTipoActa">Tipo de acta</label>
+      <select class="select_tipo">
+        <option value="Selecciona una opción">Selecciona una opción</option>
+        <option value="Acta 1">Acta 1</option>
+        <option value="Acta 2">Acta 2</option>
+        <option value="Acta 3">Acta 3</option>
+      </select>
+    </div>
+    <div class="form_group">
+      <label for="InputDescripcion">Descripción</label>
+      <input type="text" class="input_empresa" placeholder="" />
+    </div>
+    <div class="form_group">
+      <label for="InputHojaActa">Acta</label>
+      <input type="file" class="input_hoja" accept=".pdf" />
+    </div>
+    <div class="form_group">
+      <button type="submit" class="button_send">Enviar</button>
+    </div>
+  </form>
+</section>
+{%endblock content%}
