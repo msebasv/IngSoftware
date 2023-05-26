@@ -21,7 +21,7 @@ $(document).ready(function () {
       $(".sidebar").animate({ width: "50px" }); // Animate the sidebar width to a reduced size
       sidebarNav.find("h3").fadeOut(); // Fade out the sidebar navigation headings
       sidebarItems.find("a p, a .fa-caret-right").fadeOut(); // Fade out the sidebar item content
-      sidebarItems.find("a").animate({ marginLeft: "-100px" }); // Animate the left margin of the sidebar items
+      sidebarItems.find("a").animate(); // Animate the left margin of the sidebar items
       isSidebarReduced = true; // Set the flag to indicate that the sidebar is reduced
     }
   });

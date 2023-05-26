@@ -4,10 +4,10 @@
 }
 
 .main h2 {
-  font-size: 30px;
   display: block;
   padding: 10px 17px;
   border-radius: 5px;
+  font-size: 2.5rem;
 }
 
 .form .form_group {
@@ -18,7 +18,7 @@
 }
 
 .form .form_group label {
-  font-size: 18px;
+  font-size: 2rem;
   font-weight: 400;
 }
 
@@ -51,10 +51,15 @@
 }
 
 .form .form_group .button_send {
+  width: 25rem;
   background-color: #82CD47;
+  color: white;
   padding: 15px;
-  font-size: 14px;
-  border: 1px solid #c5c5c5
+  font-size: 2rem;
+  font-weight: 700;
+  border: 1px solid #c5c5c5;
+  border-radius: 15px;
+  margin: 0 auto;
 }
 
 .form .form_group select:hover {
@@ -73,6 +78,6 @@
 }
 
 .form .form_group .button_send:hover {
-  background-color: #6ccb24;
+  background-color: #6cb932;
   cursor: pointer;
 }
