@@ -144,7 +144,15 @@
 
       <main class="main">
         <!-- Main content section -->
-        {%block content%}{%endblock content%}
+        {%block content%}
+        <div class="container_welcome">
+          <h2>Bienvenido Usuario</h2>
+        </div>
+        <div class="container_calendar">
+          <h2>Calendario</h2>
+          <div id="calendar"></div>
+        </div>
+        {%endblock content%}
       </main>
     </div>
 
@@ -165,6 +173,7 @@
     <script src="{% static 'js/jquery-3.6.3.min.js' %}"></script>
     <!-- Load external JavaScript file -->
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/index.global.js' %}"></script>
     <!-- Load external JavaScript file -->
   </body>
 </html>
