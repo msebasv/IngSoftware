@@ -67,7 +67,7 @@
     </header>
 
     <div class="log_out">
-      <hr class="log_out_top">
+      <hr class="log_out_top" />
       <!-- Logout section -->
       <ul class="log_out_menu">
         <li>
@@ -82,7 +82,7 @@
           <!-- Configuration link with an icon -->
         </li>
       </ul>
-      <hr class="log_out_bottom">
+      <hr class="log_out_bottom" />
     </div>
 
     <div class="container">
@@ -90,10 +90,12 @@
       <aside class="sidebar">
         <!-- Sidebar section -->
         <nav class="sidebar__nav">
-          <h3>Información general</h3>
+          <div class="sidebar_container_title">
+            <h3>Información general</h3>
+          </div>
           <ul class="sidebar__list">
             <li class="sidebar__item">
-              <a href="">
+              <a href="{% url 'dashboard' %}">
                 <i class="fa-solid fa-house"></i>
                 <!-- Home icon -->
                 <p>Inicio</p>
@@ -102,7 +104,7 @@
               </a>
             </li>
             <li class="sidebar__item">
-              <a href="">
+              <a href="{% url 'graduates:profile' %}">
                 <i class="fa-solid fa-user"></i>
                 <!-- User icon -->
                 <p>Perfil</p>
@@ -111,19 +113,28 @@
             </li>
           </ul>
           <hr />
-          <h3>Opciones</h3>
+          <div class="sidebar_container_title">
+            <h3>Opciones</h3>
+          </div>
           <ul class="sidebar__list">
             <li class="sidebar__item">
-              <a href="">
+              <a href="{% url 'graduates:form_data' %}">
                 <i class="fa-solid fa-house"></i>
-                <p>Inicio</p>
+                <p>Datos Laborales</p>
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
             <li class="sidebar__item">
-              <a href="">
+              <a href="{% url 'administrator:new_act' %}">
                 <i class="fa-solid fa-user"></i>
-                <p>Perfil</p>
+                <p>Crear Acta</p>
+                <i class="fa-solid fa-caret-right"></i>
+              </a>
+            </li>
+            <li class="sidebar__item">
+              <a href="{% url 'administrator:list_act' %}">
+                <i class="fa-solid fa-user"></i>
+                <p>Lista Actas</p>
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
