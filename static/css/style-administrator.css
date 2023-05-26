@@ -1,0 +1,8 @@
+/* LIST ACT */
+.list_act {
+  display: block;
+  background: #fff;
+  margin: 10px auto;
+  padding: 10px 17px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.35);
+}
