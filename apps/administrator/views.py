@@ -6,8 +6,33 @@ from .models import Act
 class CreateAct(TemplateView):
     model = Act
     template_name = 'data_form_act.html'
-    # success_url = reverse_lazy('dashboard')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Obtener los resultados almacenados en la sesión del usuario
+        session_results = {
+            'administrative_results': self.request.session.get('administrative_results')
+        }
+
+        # Agregar los resultados no nulos al contexto
+        context.update({key: value for key, value in session_results.items() if value})
+
+        return context
 
 class ListAct(TemplateView):
     model = Act
     template_name = 'list_act.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Obtener los resultados almacenados en la sesión del usuario
+        session_results = {
+            'administrative_results': self.request.session.get('administrative_results'),
+        }
+
+        # Agregar los resultados no nulos al contexto
+        context.update({key: value for key, value in session_results.items() if value})
+
+        return context

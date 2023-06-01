@@ -11,7 +11,15 @@ class Job(models.Model):
         db_table = 'Job'
 
 class Graduate(models.Model):
-    salary_range = models.CharField(max_length=250, null=True, verbose_name="Salary Range")
+    SALARY_CHOICES = [
+        ('1', '1.000.000 - 3.000.0000'),
+        ('2', '3.000.000 - 6.000.000'),
+        ('3', '6.000.000 - 9.000.000'),
+        ('4', '9.000.000 - 12.000.000'),
+        ('5', '12.000.000 - 15.000.000'),
+        ('6', '15.000.000 - En adelante')
+    ]
+    salary_range = models.CharField(max_length=250, null=True, verbose_name="Salary Range", choices=SALARY_CHOICES)
     email = models.EmailField(verbose_name="Email")
     previous_email = models.EmailField(verbose_name="Previous Email")
     achievement_level = models.CharField(max_length=250, null=True, verbose_name="Achievement Level")

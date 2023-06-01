@@ -8,4 +8,4 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ['username', 'email']
     list_display = ('username', 'email', 'name',
                     'lastname', 'active_user', 'admin_user')
-    exclude = ('revious_user','previous_email','password')
+    exclude = ('previous_user','previous_email')

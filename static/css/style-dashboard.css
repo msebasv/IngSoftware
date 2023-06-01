@@ -6,6 +6,8 @@
 	text-decoration: none;
 	border: none;
 	outline: none;
+	caret-color: transparent;
+	
 }
 
 html {
@@ -116,42 +118,42 @@ a {
 
 .log_out {
 	position: absolute;
-	right: 20px;
-	width: 15rem;
+	right: 7px;
+	width: 170px;
 	background-color: #f2f2f2;
 	font-size: 1.5rem;
 	display: none;
 	border: 3px solid #d6d5d5 ;
 }
-
-
-.log_out .log_out_menu {
-	width: 98%;
-	height: 20rem;
+.log_out .log_out_menu{
 	display: flex;
+	align-items: center;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
-	margin: 0 auto;
+	height: 100%;
 }
-
 .log_out .log_out_menu li {
-	padding: 1 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
 }
 
 .log_out ul li a {
 	color: #333;
+	width: 100%;
+	text-align: center;
+	padding: 10px;
 }
 
 .log_out .log_out_menu li a i {
-	font-size: 2rem;
+	font-size: 1.5rem;
 	padding-right: 10px;
 }
 
 .log_out ul li a:hover {
 	color: #007bff;
 	background-color: rgb(226, 226, 226);
-	padding: 10px;
 	border-radius: 10px;
 }
 
