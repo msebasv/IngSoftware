@@ -1,4 +1,5 @@
 from django.db import models
+
 from django.core.validators import FileExtensionValidator
 from apps.user.models import User
 
@@ -8,6 +9,7 @@ from apps.user.models import User
 class Administrative(models.Model):
     salary = models.FloatField(verbose_name="Salary")
     position = models.CharField(max_length=250, null=False, verbose_name="Position")
+
     user_id = models.OneToOneField(User, on_delete=models.CASCADE, null=False, blank=False)
     class Meta:
         db_table = 'Administrative'
@@ -21,6 +23,7 @@ class Comite (models.Model):
     class Meta:
         db_table = 'Comite'
 
+
 class Act (models.Model):
     title = models.CharField(max_length=250, null=False, verbose_name="Titulo")
     type = models.CharField(max_length=250, null=False, verbose_name="Tipo")
@@ -33,4 +36,3 @@ class Act (models.Model):
     id_administrative = models.ForeignKey(Administrative, on_delete= models.CASCADE, null=False, blank=False)
     class Meta:
         db_table = 'Act'
-

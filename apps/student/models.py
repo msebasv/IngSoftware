@@ -1,11 +1,19 @@
 from django.db import models
+<<<<<<< HEAD
 from apps.user.models import User
+=======
+from apps.user.models import User_General
+>>>>>>> 944f203429d9e85b419c11df60451f28341062dc
 
 # Create your models here.
 class Student(models.Model):
     semester = models.PositiveSmallIntegerField(verbose_name="Semester")
     major = models.CharField(max_length=250, null=False, verbose_name="Major")
+<<<<<<< HEAD
     user_id = models.OneToOneField(User, on_delete=models.CASCADE, null=False, blank=False)
+=======
+    user_id = models.OneToOneField(User_General, on_delete=models.CASCADE, null=False, blank=False)
+>>>>>>> 944f203429d9e85b419c11df60451f28341062dc
     class Meta:
         db_table = 'Student'
 
