@@ -31,7 +31,7 @@ $(document).ready(function () {
       $(".log_out")
         .css({ opacity: 0, height: "auto" })
         .show()
-        .css({ opacity: 1, top: "112px", height: "auto" });
+        .css({ opacity: 1, top: "90px", height: '120px' });
       // Make the log section visible and adjust its position and opacity
       $(".log_out .log_out_menu").fadeIn(); // Fade in the log menu
       isLogReduced = false; // Set the flag to indicate that the log is not reduced

@@ -1,16 +1,26 @@
 from django.db import models
+
 from django.core.validators import FileExtensionValidator
-from apps.user.models import Administrative
+from apps.user.models import User
 
 # Create your models here.
+class Administrative(models.Model):
+    salary = models.FloatField(verbose_name="Salary")
+    position = models.CharField(max_length=250, null=False, verbose_name="Position")
+
+    user_id = models.OneToOneField(User, on_delete=models.CASCADE, null=False, blank=False)
+    class Meta:
+        db_table = 'Administrative'
+
+
 class Committee (models.Model):
-    name = models.CharField(max_length=250, null=False, verbose_name="Name")
-    
+    name = models.CharField(max_length=250, null=False, verbose_name="Name")    
     class Meta:
         db_table = "Committee"
         
     def __str__(self):
         return self.name
+
 
 class ActType(models.Model):
     name = models.CharField(max_length=250, null=False, verbose_name="Name")

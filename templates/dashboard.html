@@ -49,14 +49,25 @@
           </a>
         </ul>
         <ul class="header_list_second">
-          <li>Admin</li>
+          <li>{{user.name.upper}}</li>
           <!-- Admin label -->
           <li>
             <a class="header_list_second_button"
-              ><img
-                src="{% static 'img/profile-women.png' %}"
-                alt="Usuario imagen"
-              />
+              >
+
+              {% if user.gender == 'F' %}
+                <img  
+                  src="{% static 'img/profile-woman.png' %}"
+                  alt="Usuario imagen"
+                />
+
+                {% else %}
+                <img  
+                  src="{% static 'img/profile-men.png' %}"
+                  alt="Usuario imagen"
+                />
+              {%endif %}
+              
             </a>
             <!-- User profile image -->
             <div class="notifications">3</div>
@@ -67,9 +78,12 @@
     </header>
 
     <div class="log_out">
-      <hr class="log_out_top" />
       <!-- Logout section -->
       <ul class="log_out_menu">
+        <li>
+          <a href=""> <i class="fa-solid fa-hammer"></i> Configuración</a>
+          <!-- Configuration link with an icon -->
+        </li>
         <li>
           <a href="{% url 'logout' %}">
             <i class="fa-solid fa-person-walking-arrow-right"></i> Cerrar
@@ -77,12 +91,8 @@
           >
           <!-- Logout link with an icon -->
         </li>
-        <li>
-          <a href=""> <i class="fa-solid fa-hammer"></i> Configuración</a>
-          <!-- Configuration link with an icon -->
-        </li>
       </ul>
-      <hr class="log_out_bottom" />
+  
     </div>
 
     <div class="container">
@@ -113,31 +123,32 @@
             </li>
           </ul>
           <hr />
-          <div class="sidebar_container_title">
-            <h3>Opciones</h3>
-          </div>
           <ul class="sidebar__list">
+            {% if graduate_results %}
             <li class="sidebar__item">
               <a href="{% url 'graduates:form_data' %}">
-                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-id-card"></i>
                 <p>Datos Laborales</p>
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
+            {% endif %}
+            {% if administrative_results %}
             <li class="sidebar__item">
               <a href="{% url 'administrator:new_act' %}">
-                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-file-circle-plus"></i>
                 <p>Crear Acta</p>
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
             <li class="sidebar__item">
               <a href="{% url 'administrator:list_act' %}">
-                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-file-pen"></i> 
                 <p>Lista Actas</p>
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
+            {% endif %}
           </ul>
         </nav>
       </aside>
@@ -156,7 +167,7 @@
       </main>
     </div>
 
-    <footer class="footer">
+    <footer class="footer">  
       <!-- Footer section -->
       <p class="footer__text">
         © 2023 Universidad el bosque. Vigilada Mineducación. Personería Jurídica

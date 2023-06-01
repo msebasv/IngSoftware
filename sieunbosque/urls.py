@@ -19,8 +19,7 @@ from django.urls import path, include, re_path
 from django.views.static import serve
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from apps.user.views import Login, logoutUser
-from apps.app.views import Dashboard
+from apps.user.views import Login, logoutUser, Dashboard
 
 
 urlpatterns = [
@@ -31,6 +30,7 @@ urlpatterns = [
     path('dashboard/graduates/',include(('apps.graduates.urls', 'graduates'))),
     path('dashboard/administrator/', include(('apps.administrator.urls', 'administrator')))
 ]
+
 urlpatterns += [
     re_path(r'^media/(?P<path>.*)$', serve, {
         'document_root': settings.MEDIA_ROOT,
