@@ -66,7 +66,9 @@
         <td>{{ act.current_date }}</td>
         <td>{{ act.committee.name }}</td>
         <td>{{ act.type.name }}</td>
-        <td class="link">Descargar</td>
+        <td class="link">
+          <a href="{{ act.document.url }}" download> Descargar</a>
+        </td>
       </tr>
       {% endfor %}
     </tbody>

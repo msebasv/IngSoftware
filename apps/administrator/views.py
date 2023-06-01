@@ -7,13 +7,14 @@ from django.db.models import F, Q
 from .models import Act, Committee, ActType
 from .forms import ActForm
 import json
+from django.http import JsonResponse
 # Create your views here.
 
 class ListAct(ListView):
     model = Act
     template_name = 'list_act.html'
     context_object_name = 'acts'
-    paginate_by = 3
+    paginate_by = 10
     committees = Committee.objects.all()
 
     def get_context_data(self, **kwargs):
@@ -85,8 +86,7 @@ class CreateAct(CreateView):
             act_types_by_committee[committee.id] = [act_type.id for act_type in act_types]
         return act_types_by_committee
     
-# class NewAct(CreateView):
-#     model = Act
-#     template_name = 'form_new.html'
-#     form_class = ActForm
-#     sucess_url = reverse_lazy('administrator:list_act')
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        acta_id = self.object.id
+        return JsonResponse({'acta_id': acta_id})

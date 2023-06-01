@@ -82,27 +82,27 @@ WSGI_APPLICATION = 'sieunbosque.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'sieunbosquedatabase',
-#         'USER': 'brayaningsoftware',
-#         'PASSWORD': 'u1wg{xM]KQEe]-I',
-#         'HOST': 'sieunbosque.mysql.database.azure.com',
-#         'PORT': '3306'
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'BASEING',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'NAME': 'sieunbosquedatabase',
+        'USER': 'brayaningsoftware',
+        'PASSWORD': 'u1wg{xM]KQEe]-I',
+        'HOST': 'sieunbosque.mysql.database.azure.com',
         'PORT': '3306'
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'BASEING',
+#         'USER': 'root',
+#         'PASSWORD': '123456',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306'
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

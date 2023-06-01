@@ -15,8 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.views.static import serve
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from apps.user.views import Login, logoutUser
 from apps.app.views import Dashboard
@@ -29,4 +30,9 @@ urlpatterns = [
     path('logout/', login_required(logoutUser), name='logout'),
     path('dashboard/graduates/',include(('apps.graduates.urls', 'graduates'))),
     path('dashboard/administrator/', include(('apps.administrator.urls', 'administrator')))
+]
+urlpatterns += [
+    re_path(r'^media/(?P<path>.*)$', serve, {
+        'document_root': settings.MEDIA_ROOT,
+    })
 ]

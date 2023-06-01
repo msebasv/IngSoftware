@@ -1,7 +1,7 @@
 {% extends 'dashboard.html' %} {% block content %}
 <h2>Nueva Acta</h2>
 <section class="administrator_act">
-  <form method="POST" enctype="multipart/form-data" class="form">
+  <form method="POST" enctype="multipart/form-data" class="form" id="actaForm">
     {% csrf_token %} {% for field in form %}
     <div class="form_group">
       <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -11,12 +11,46 @@
     </div>
     {% endfor %}
     <div class="form_group">
-      <button type="submit" class="button_send">Enviar</button>
+      <button type="submit" class="button_send" id="submitBtn">Enviar</button>
     </div>
   </form>
 </section>
+<!-- Modal -->
+<div class="modal" id="successModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Acta Creada Exitosamente</h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>El acta ha sido creada correctamente.</p>
+      <p>Número de acta: <span id="actaId"></span></p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">
+        Aceptar
+      </button>
+    </div>
+  </div>
+</div>
+
 {% endblock content %} {% block extrajs %}
 <script>
+  // Obtener los elementos del DOM
+  var form = document.getElementById("actaForm");
+  var submitBtn = document.getElementById("submitBtn");
+  var modal = document.getElementById("successModal");
+  var actaIdSpan = document.getElementById("actaId");
+  var acceptBtn = document.querySelector("#successModal .modal-footer button");
+  var actaIdValue = "{{ acta_id }}";
+
   $(document).ready(function () {
     var committeeSelect = $("#id_committee");
     var actSelect = $("#id_type");
@@ -53,6 +87,45 @@
     // Inicializar las opciones de acta según el comité seleccionado inicialmente
     var initialCommitteeId = committeeSelect.val();
     loadActOptions(initialCommitteeId);
+
+    // MODAL
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var xhr = new XMLHttpRequest();
+      xhr.open(form.method, form.action, true);
+      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          var actaIdValue = response.acta_id;
+          showModal(actaIdValue);
+          acceptBtn.style.display = "block";
+          submitBtn.disabled = true;
+        }
+      };
+      xhr.send(new FormData(form));
+    });
+
+    function showModal(actaIdValue) {
+      if (modal) {
+        modal.style.display = "block";
+        var actaIdSpan = document.getElementById("actaId");
+        console.log(actaIdValue);
+        actaIdSpan.textContent = actaIdValue;
+      }
+    }
+
+    // Función para ocultar el modal
+    function hideModal() {
+      if (modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Agregar el evento de clic en el botón "Aceptar" del modal
+    acceptBtn.addEventListener("click", function () {
+      window.location.href = "{% url 'administrator:list_act' %}";
+    });
   });
 </script>
 
