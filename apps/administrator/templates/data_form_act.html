@@ -1,35 +1,59 @@
-{% extends 'dashboard.html' %} {% load static %} {%block content%}
+{% extends 'dashboard.html' %} {% block content %}
 <h2>Nueva Acta</h2>
 <section class="administrator_act">
-  <form action="#" method="post" class="form">
+  <form method="POST" enctype="multipart/form-data" class="form">
+    {% csrf_token %} {% for field in form %}
     <div class="form_group">
-      <label for="InputTituloActa">Título de acta</label>
-      <input
-        type="text"
-        class="input_titulo"
-        placeholder="Ej. Acta de eventos"
-      />
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }} {% for error in field.errors %}
+      <span class="error">{{ error }}</span>
+      {% endfor %}
     </div>
-    <div class="form_group">
-      <label for="InputTipoActa">Tipo de acta</label>
-      <select class="select_tipo">
-        <option value="Selecciona una opción">Selecciona una opción</option>
-        <option value="Acta 1">Acta 1</option>
-        <option value="Acta 2">Acta 2</option>
-        <option value="Acta 3">Acta 3</option>
-      </select>
-    </div>
-    <div class="form_group">
-      <label for="InputDescripción">Descripción</label>
-      <textarea class="textarea_descripcion" rows="3"></textarea>
-    </div>
-    <div class="form_group">
-      <label for="InputHojaActa">Acta</label>
-      <input type="file" class="input_hoja" accept=".pdf" />
-    </div>
+    {% endfor %}
     <div class="form_group">
       <button type="submit" class="button_send">Enviar</button>
     </div>
   </form>
 </section>
-{%endblock content%}
+{% endblock content %} {% block extrajs %}
+<script>
+  $(document).ready(function () {
+    var committeeSelect = $("#id_committee");
+    var actSelect = $("#id_type");
+
+    // Obtener las opciones de acta disponibles para cada comité
+    var actOptionsByCommittee = {
+      1: [1, 3], // Opciones de acta para el Comité 1
+      2: [2], // Opción de acta para el Comité 2
+    };
+
+    // Función para cargar las opciones de acta según el comité seleccionado
+    function loadActOptions(committeeId) {
+      // Limpiar el select de acta
+      actSelect.empty();
+
+      // Obtener las opciones de acta correspondientes al comité seleccionado
+      var options = actOptionsByCommittee[committeeId] || [];
+
+      // Crear y añadir las opciones al select de acta
+      options.forEach(function (actId) {
+        var optionElement = $("<option></option>")
+          .attr("value", actId)
+          .text("Acta " + actId);
+        actSelect.append(optionElement);
+      });
+    }
+
+    // Evento de cambio en el select de comité
+    committeeSelect.on("change", function () {
+      var committeeId = $(this).val();
+      loadActOptions(committeeId);
+    });
+
+    // Inicializar las opciones de acta según el comité seleccionado inicialmente
+    var initialCommitteeId = committeeSelect.val();
+    loadActOptions(initialCommitteeId);
+  });
+</script>
+
+{% endblock extrajs %}
