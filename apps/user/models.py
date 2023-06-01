@@ -1,10 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-<<<<<<< HEAD
+
 from django.contrib.auth.hashers import make_password
 from datetime import date
-=======
->>>>>>> 944f203429d9e85b419c11df60451f28341062dc
+
 
 
 # Create your models here.
@@ -67,26 +66,6 @@ class User(AbstractBaseUser):
     def is_staff(self):
         return self.admin_user
     class Meta:
-<<<<<<< HEAD
-=======
-        db_table = 'Super_User'
-    
-class User_General(models.Model):
-    name = models.CharField(max_length=250, null=False, blank=False, verbose_name="Name")
-    last_name = models.CharField(max_length=250, null=False, blank=False, verbose_name="Last Name")
-    phone = models.CharField(max_length=250, null=True, verbose_name="Phone")
-    institutional_user = models.CharField(max_length=250, null=False, blank=False, unique=True, verbose_name="Institutional User")
-    previous_user = models.CharField(max_length=250, null=True, blank=True, unique=True, verbose_name="Previous User")
-    email = models.EmailField(null=True, verbose_name="Email")
-    previous_email = models.EmailField(verbose_name="Previous Email")
-    password = models.CharField(max_length=50, null=False, verbose_name="Password")
-    birthday = models.DateField()
-    address = models.CharField(max_length=250, null=False, verbose_name="Address")
-    gender = models.CharField(max_length=20, default="Femenino",null=False, verbose_name="Gender")
-    status = models.BooleanField(default=True, null=False, verbose_name="Status")
-
-    class Meta:
->>>>>>> 944f203429d9e85b419c11df60451f28341062dc
         db_table = 'User'
 
 class Event(models.Model):
