@@ -83,15 +83,18 @@ class CreateAct(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['act_types_by_committee'] = json.dumps(self.get_act_types_by_committee())
+        # Obtener los act_types_by_committee y convertirlos a una cadena JSON
+        act_types_by_committee = self.get_act_types_by_committee()
+        act_types_by_committee_json = json.dumps(act_types_by_committee)
+        
+        # Agregar la cadena JSON al contexto
+        context['act_types_by_committee'] = act_types_by_committee_json
                 # Obtener los resultados almacenados en la sesión del usuario
         session_results = {
             'administrative_results': self.request.session.get('administrative_results')
         }
-
         # Agregar los resultados no nulos al contexto
         context.update({key: value for key, value in session_results.items() if value})
-
         return context
 
     def get_act_types_by_committee(self):

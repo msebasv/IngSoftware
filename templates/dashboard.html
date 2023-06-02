@@ -52,22 +52,19 @@
           <li>{{user.name.upper}}</li>
           <!-- Admin label -->
           <li>
-            <a class="header_list_second_button"
-              >
-
+            <a class="header_list_second_button">
               {% if user.gender == 'F' %}
-                <img  
-                  src="{% static 'img/profile-woman.png' %}"
-                  alt="Usuario imagen"
-                />
+              <img
+                src="{% static 'img/profile-woman.png' %}"
+                alt="Usuario imagen"
+              />
 
-                {% else %}
-                <img  
-                  src="{% static 'img/profile-men.png' %}"
-                  alt="Usuario imagen"
-                />
+              {% else %}
+              <img
+                src="{% static 'img/profile-men.png' %}"
+                alt="Usuario imagen"
+              />
               {%endif %}
-              
             </a>
             <!-- User profile image -->
             <div class="notifications">3</div>
@@ -92,7 +89,6 @@
           <!-- Logout link with an icon -->
         </li>
       </ul>
-  
     </div>
 
     <div class="container">
@@ -132,8 +128,7 @@
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
-            {% endif %}
-            {% if administrative_results %}
+            {% endif %} {% if administrative_results %}
             <li class="sidebar__item">
               <a href="{% url 'administrator:new_act' %}">
                 <i class="fa-solid fa-file-circle-plus"></i>
@@ -143,7 +138,7 @@
             </li>
             <li class="sidebar__item">
               <a href="{% url 'administrator:list_act' %}">
-                <i class="fa-solid fa-file-pen"></i> 
+                <i class="fa-solid fa-file-pen"></i>
                 <p>Lista Actas</p>
                 <i class="fa-solid fa-caret-right"></i>
               </a>
@@ -167,7 +162,7 @@
       </main>
     </div>
 
-    <footer class="footer">  
+    <footer class="footer">
       <!-- Footer section -->
       <p class="footer__text">
         © 2023 Universidad el bosque. Vigilada Mineducación. Personería Jurídica
@@ -186,6 +181,9 @@
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/index.global.js' %}"></script>
     <!-- Load external JavaScript file -->
-    {% block extrajs %}{% endblock extrajs %}
+    {% block extrajs %} {% if request.path == '/dashboard/' %}
+    <!-- Archivo "calendar.js" solo incluido en la página del panel de control -->
+    <script src="{% static 'js/calendar.js' %}"></script>
+    {% endif %} {% endblock extrajs %}
   </body>
 </html>
