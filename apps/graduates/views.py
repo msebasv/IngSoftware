@@ -1,11 +1,17 @@
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import CreateView, TemplateView
 from .models import Graduate, Job
+from .forms import LaboralDataForm
+from django.urls import reverse_lazy
 
 # Create your views here.
-class formDataJob(TemplateView):
+class formDataJob(CreateView):
     model = Graduate
     template_name = 'data_form.html'
+    form_class = LaboralDataForm
+    success_url = reverse_lazy('graduates:profile')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -19,6 +25,9 @@ class formDataJob(TemplateView):
         context.update({key: value for key, value in session_results.items() if value})
 
         return context
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        return super().form_valid(form)
 
 
 class viewDataProfile(TemplateView):

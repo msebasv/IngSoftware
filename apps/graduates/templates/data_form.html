@@ -1,13 +1,17 @@
-{% extends 'dashboard.html' %} {% load static %} {%block content%}
+{% extends 'dashboard.html' %}
+{% load static %}
+{% block content %}
 <h2>Ingresa tus datos laborales</h2>
 <section class="graduates">
-  <form action="#" method="post" class="form">
+  <form action="/" method="POST" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="form_group">
       <label for="InputTitulo">Título profesional</label>
       <input
         type="text"
         class="input_titulo"
-        placeholder="P. ej. Ingeniero de software "
+        placeholder="P. ej. Ingeniero de software"
+        name="titulo"
       />
     </div>
     <div class="form_group">
@@ -16,18 +20,17 @@
         type="text"
         class="input_cargo"
         placeholder="P. ej. Desarrollador Senior"
+        name="cargo"
       />
     </div>
     <div class="form_group">
       <label for="InputTipo">Tipo de empleo</label>
-      <select class="select_tipo">
+      <select class="select_tipo" name="tipo_empleo">
         <option value="Selecciona una opción">Selecciona una opción</option>
         <option value="Jornada completa">Jornada completa</option>
         <option value="Jornada parcial">Jornada parcial</option>
         <option value="Autónomo">Autónomo</option>
-        <option value="Profesional independiente">
-          Profesional independiente
-        </option>
+        <option value="Profesional independiente">Profesional independiente</option>
         <option value="Contrato temporal">Contrato temporal</option>
         <option value="Contrato de prácticas">Contrato de prácticas</option>
         <option value="Contrato de formación">Contrato de formación</option>
@@ -36,23 +39,36 @@
     </div>
     <div class="form_group">
       <label for="InputEmpresa">Empresa</label>
-      <input type="text" class="input_empresa" placeholder="P. ej. Microsoft" />
+      <input type="text" class="input_empresa" placeholder="P. ej. Microsoft" name="empresa" />
     </div>
     <div class="form_group">
       <label for="InputSector">Sector</label>
-      <input type="text" class="input_sector" placeholder="P. ej. tecnología" />
+      <input type="text" class="input_sector" placeholder="P. ej. tecnología" name="sector" />
     </div>
     <div class="form_group">
-      <label for="InputDescripción">Descripción</label>
-      <textarea class="textarea_descripcion" rows="3"></textarea>
+      <label for="InputDescripcion">Descripción</label>
+      <textarea class="textarea_descripcion" rows="3" name="descripcion"></textarea>
+    </div>
+    <div class="form_group">
+      <label for="InputRangoSalarial">Rango salarial</label>
+      <select class="select_rango_salarial" name="rango_salarial">
+        <option value="Selecciona una opción">Selecciona una opción</option>
+        <option value="Menos de $1000">Entre $1.000.000 - $3.000.000</option>
+        <option value="$1000 - $3000">Entre $3.000.000 - $6.000.000</option>
+        <option value="$3000 - $5000">Entre $6.000.000 - $9.000.000</option>
+        <option value="Más de $5000">Más de 10.000.000</option>
+      </select>
     </div>
     <div class="form_group">
       <label for="InputHoja">Hoja de vida</label>
-      <input type="file" class="input_hoja" accept=".pdf" />
+      <input type="file" class="input_hoja" accept=".pdf" name="hoja_vida" />
     </div>
     <div class="form_group">
-      <button type="submit" class="button_send">Enviar</button>
+      <button type="submit" class="button_send" onclick="showAlert()">Enviar</button>
     </div>
   </form>
 </section>
-{%endblock content%}
+
+
+
+{% endblock content %}
