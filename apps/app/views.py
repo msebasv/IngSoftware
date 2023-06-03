@@ -1,12 +1,20 @@
 from django.shortcuts import render, redirect
 from django.core.mail import EmailMessage
-from django.views.generic import TemplateView
-from .forms import eventForm
+from django.views.generic import TemplateView, ListView
 from django.http import HttpResponse
+from .forms import eventForm
+from apps.user.models import *
 
 # Create your views here.
-class Dashboard(TemplateView):
+class Dashboard(ListView):
+    model = Event
     template_name = 'dashboard.html'
+    print("ANTES")
+    def get_queryset(self):
+        queryset = self.model.objects.filter(status=True, user=self.request.user)
+        print("DESPUES")
+        return queryset
+
 
 def index(request):
     return render(request, 'html/jinja2/index.j2')

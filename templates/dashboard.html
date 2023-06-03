@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{% static 'css/style-forms.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style-administrator.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style-table.css' %}" />
+    <link rel="icon" href="{% static 'img/LogoUEB.png' %}" type="image/png" />
     {%block css_external%}{%endblock css_external%}
   </head>
 
@@ -183,7 +184,44 @@
     <!-- Load external JavaScript file -->
     {% block extrajs %} {% if request.path == '/dashboard/' %}
     <!-- Archivo "calendar.js" solo incluido en la página del panel de control -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="{% static 'js/calendar.js' %}"></script>
-    {% endif %} {% endblock extrajs %}
+    <script src="{% static 'js/es.js' %}"></script>
+    {% endif %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+      var calendarUI = document.getElementById("calendar");
+      var calendar = new FullCalendar.Calendar(calendarUI, {
+        headerToolbar: {
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+        },
+        navLinks: true,
+        selectable: true,
+        businessHours: true,
+        events :[
+          {% for eventos in object_list %}
+            {
+              title: "{{ eventos.subject }}",
+              description: "{{ eventos.description }}",
+              start: '{{ eventos.date_init | date:"Y-m-d" }}',
+              end: '{{ eventos.date_finish | date:"Y-m-d" }}',
+            },
+          {% endfor %}
+        ],
+        eventClick: function(info) {
+        var eventTitle = info.event.title;
+        var eventStartDate = moment(info.event.start).format('Y-MM-DD');
+        var eventEndDate = moment(info.event.end).format('Y-MM-DD');
+        var eventDescription = info.event.extendedProps.description;
+        alert('Evento: ' + eventTitle +'\nFecha Inicio: '+ eventStartDate + '\nFecha Fin: '+ eventEndDate+'\nDescripción: ' + eventDescription);
+        },
+          });
+          calendar.render();
+          calendar.setOption('locale','es');
+      });
+    </script>
+    {% endblock extrajs %}
   </body>
 </html>

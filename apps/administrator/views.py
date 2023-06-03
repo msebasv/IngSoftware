@@ -14,7 +14,7 @@ class ListAct(ListView):
     model = Act
     template_name = 'list_act.html'
     context_object_name = 'acts'
-    paginate_by = 10
+    paginate_by = 2
     committees = Committee.objects.all()
 
     def get_context_data(self, **kwargs):
