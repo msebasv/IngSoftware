@@ -6,21 +6,54 @@
   justify-content: flex-end;
 }
 
-.container_filters .input_search_by {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-right: none;
-  border-radius: 4px 0 0 4px;
-  outline: none;
+.container_filters button {
+  width: 100px;
+  background-color: #82CD47;
+  color: #000000;
+  padding: 11px;
+  font-weight: 700;
+  border: 1px solid #c5c5c5;
+  border-radius: 5px;
 }
 
-.container_filters .button_search_by {
-  padding: 10px 15px;
-  background-color: #82CD47;
-  border: 1px solid #82CD47;
-  color: #000000;
-  border-radius: 0 4px 4px 0;
+.container_filters .form_container_search_by_comitee_act {
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
+
+.form_container_search_by_comitee_act label {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.form_container_search_by_comitee_act select {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  height: 40px;
+  padding: 5px 5px 5px 20px;
+  width: 200px;
+}
+
+
+.form_container_search_by_comitee_act button:hover {
+  background-color: #6cb932;
+  cursor: pointer;
+}
+
+.container_filters .form_container_search_by_P {
+  display: flex;
+  align-items: center;
+}
+
+.container_filters .form_container_search_by_P input {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  height: 30px;
+  padding: 5px 5px 5px 20px;
+}
+
 
 /* TABLE */
 .table {
@@ -37,7 +70,7 @@
 .table thead tr th {
   font-weight: bold;
   padding: 12px 30px;
-  padding-left: 42px;
+  /* padding-left: 42px; */
 }
 
 .table thead tr th span {
@@ -51,7 +84,7 @@
 }
 
 .table tbody tr td.td_title {
-  text-align: left;
+  /* text-align: left; */
 }
 
 .table tbody tr td.link {

@@ -9,7 +9,7 @@ class Student(models.Model):
 
     user_id = models.OneToOneField(User, on_delete=models.CASCADE, null=False, blank=False)
     class Meta:
-        db_table = 'Student'
+        db_table = 'Student'        
 
 class Enrollment(models.Model):
     cost = models.CharField(max_length=7, null=False, blank=False, verbose_name="Cost")

@@ -24,13 +24,11 @@ class Dashboard(TemplateView):
         if Administrative.objects.filter(user_id=user).exists():
             administrative_results = Administrative.objects.filter(user_id=user)
             self.request.session['administrative_results'] = list(administrative_results.values())
-            print('Soy admin')
             context['administrative_results'] = administrative_results
 
         elif Student.objects.filter(user_id=user).exists():
             student_results = Student.objects.filter(user_id=user)
             self.request.session['student_results'] = list(student_results.values())
-            print('Soy estudiante')
             context['student_results'] = student_results
 
             student = student_results.first().id
@@ -38,16 +36,12 @@ class Dashboard(TemplateView):
             if Graduate.objects.filter(student_id=student).exists():
                 graduate_results = Graduate.objects.filter(student_id=student)
                 self.request.session['graduate_results'] = list(graduate_results.values())
-                print('Soy egresado')
                 context['graduate_results'] = graduate_results
 
         elif Teacher.objects.filter(user_id=user).exists():
             teacher_results = Teacher.objects.filter(user_id=user)
             self.request.session['teacher_results'] = list(teacher_results.values())
-            print('Soy profesor')
             context['teacher_results'] = teacher_results
-
-        print(context)
         return context
 
 

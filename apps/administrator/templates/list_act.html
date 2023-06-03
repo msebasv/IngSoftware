@@ -1,81 +1,162 @@
-{% extends 'dashboard.html' %} {% load static %} {%block content%}
+{% extends 'dashboard.html' %} {% load static %} {% block content %}
 <h2>Lista de Actas</h2>
 <section class="list_act">
   <div class="container_filters">
-    <input
-      type="text"
-      class="input_search_by"
-      placeholder="Buscar por número de aca"
-    />
-    <button class="button_search_by">Buscar</button>
+    <!-- Comité -->
+    <form method="GET" class="form_container_search_by_comitee_act">
+      <div class="container_select_committee">
+        <label class="">Comité</label>
+        <select
+          class="select_by_committee"
+          aria-label="Default select example"
+          name="committee"
+        >
+          <option value="">Seleccione un comité</option>
+          {% for committee in committees %}
+          <option value="{{ committee.id }}">{{ committee.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- Act -->
+      <div class="container_select_act">
+        <label class="">Acta</label>
+        <select
+          class="select_by_act"
+          aria-label="Default select example"
+          name="act"
+        >
+          <option value="">Seleccione un Acta</option>
+          {% for act_type in act_types %}
+          <option value="{{ act_type.id }}">{{ act_type.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button class="button_search_by" type="submit">Buscar</button>
+    </form>
+
+    <!-- By id -->
+    <form method="GET" class="form_container_search_by_P">
+      <input
+        type="text"
+        class="input_search_by"
+        name="search"
+        placeholder="Buscar por número de acta"
+        value="{{ request.GET.search }}"
+      />
+      <button class="button_search_by_P" type="submit">Buscar</button>
+    </form>
   </div>
-  <table class="table" cellspacing="0" cellpadding="0">
+  <!-- Table -->
+  <table class="table" id="table-container" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
         <th><span>Número de Acta</span></th>
         <th><span>Título de acta</span></th>
+        <th><span>Fecha de acta</span></th>
+        <th><span>Comité</span></th>
         <th><span>Tipo de acta</span></th>
-        <th><span>Fecha de creación</span></th>
         <th><span>Archivo</span></th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>0006</td>
-        <td class="td_title">Acta de eventos</td>
-        <td>Acta 1</td>
-        <td>20 de Mayo 2023</td>
-        <td class="link">Descargar</td>
+      {% for act in acts %}
+      <tr data-committee-id="{{ act.committee.id }}">
+        <td>{{ act.id }}</td>
+        <td class="td_title">{{ act.title }}</td>
+        <td>{{ act.current_date }}</td>
+        <td>{{ act.committee.name }}</td>
+        <td>{{ act.type.name }}</td>
+        <td class="link">
+          <a href="{{ act.document.url }}" download> Descargar</a>
+        </td>
       </tr>
-      <tr>
-        <td>0005</td>
-        <td class="td_title">Acta de reunión profesores</td>
-        <td>Acta 2</td>
-        <td>19 de Mayo 2023</td>
-        <td class="link">Descargar</td>
-      </tr>
-      <tr>
-        <td>0004</td>
-        <td class="td_title">Acta de reunión administrativos</td>
-        <td>Acta 3</td>
-        <td>18 de Mayo 2023</td>
-        <td class="link">Descargar</td>
-      </tr>
-      <tr>
-        <td>0003</td>
-        <td class="td_title">Acta de reunión Universidades</td>
-        <td>Acta 1</td>
-        <td>17 de Mayo 2023</td>
-        <td class="link">Descargar</td>
-      </tr>
-      <tr>
-        <td>0002</td>
-        <td class="td_title">Acta de reunión Estudiantes</td>
-        <td>Acta 2</td>
-        <td>16 de Mayo 2023</td>
-        <td class="link">Descargar</td>
-      </tr>
-      <tr>
-        <td>0001</td>
-        <td class="td_title">Acta de reunión Profesores-Estudiantes</td>
-        <td>Acta 3</td>
-        <td>15 de Mayo 2023</td>
-        <td class="link">Descargar</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
+  <!-- Pagination -->
   <div class="container_pagination">
     <ul class="pagination">
-      <li><a href="#">«</a></li>
-      <li><a href="#">1</a></li>
-      <li><a class="active" href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#">6</a></li>
-      <li><a href="#">7</a></li>
-      <li><a href="#">»</a></li>
+      {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">«</a></li>
+      {% else %}
+      <li disabled><a>«</a></li>
+      {% endif %} {% for page_number in page_obj.paginator.page_range %}
+      <!-- prettier-ignore -->
+      {% if page_number == current_page_number %}
+      <li class="active">
+        <a class="current active" href="?page={{ page_number }}"
+          >{{ page_number }}</a
+        >
+      </li>
+      {% else %}
+      <li>
+        <a class="pagination-numbers" href="?page={{ page_number }}"
+          >{{ page_number }}</a
+        >
+      </li>
+      {% endif %} {% endfor %} {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">»</a></li>
+      {% else %}
+      <li><a disabled>»</a></li>
+      {% endif %}
     </ul>
   </div>
 </section>
-{%endblock content%}
+{% endblock content %} {% block extrajs %}
+<script>
+  // Obtener los elementos del DOM
+  const selectCommittee = document.querySelector(".select_by_committee");
+  const selectAct = document.querySelector(".select_by_act");
+  const form = document.querySelector(".form_container_search_by_comitee_act");
+
+  // Crear un objeto que mapee los ID de comité con las opciones de acta correspondientes
+  const actOptionsByCommittee = {
+    {% for committee in committees %}
+    {{ committee.id }}: [
+      {% for act_type in committee.acttype_set.all %}
+      {{ act_type.id }},
+      {% endfor %}
+    ],
+    {% endfor %}
+  };
+
+  // Función para cargar las opciones de acta según el comité seleccionado
+  function loadActOptions(committeeId) {
+    // Limpiar el select de acta
+    selectAct.innerHTML = "";
+
+    // Obtener las opciones de acta correspondientes al comité seleccionado
+    const options = actOptionsByCommittee[committeeId] || [];
+
+    // Crear y añadir las opciones al select de acta
+    options.forEach((actId) => {
+      const optionElement = document.createElement("option");
+      optionElement.value = actId; // Utilizar el ID del acta como valor del campo 'id'
+      optionElement.textContent = "Acta " + actId;
+      selectAct.appendChild(optionElement);
+      console.log(optionElement.value); // Imprimir el ID del acta
+    });
+  }
+
+  // Evento de cambio en el select de comité
+  selectCommittee.addEventListener("change", function () {
+    const committeeId = this.value;
+    loadActOptions(committeeId);
+  });
+
+  // Evento de envío del formulario
+  form.addEventListener("submit", function (event) {
+    event.preventDefault(); // Evitar el envío del formulario
+
+    const committeeId = selectCommittee.value;
+    const actId = selectAct.value;
+
+    // Construir la URL con los parámetros seleccionados
+    const url = window.location.pathname + "?committee=" + committeeId + "&act=" + actId;
+
+    // Redireccionar a la URL con los parámetros seleccionados
+    window.location.href = url;
+  });
+</script>
+
+{% endblock extrajs %}

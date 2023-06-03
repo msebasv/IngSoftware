@@ -1,29 +1,27 @@
-{% extends 'dashboard.html' %} {% load static %}
-{%block content%}
+{% extends 'dashboard.html' %} {% load static %} {%block content%}
 <article class="article_profile">
 	<section class="article_profile_photo">
 		{% if user.gender == 'F' %}
-			<img src= "{% static 'img/profile-woman.png' %}" alt="">
+		<img src="{% static 'img/profile-woman.png' %}" alt="" />
 		{%else%}
-		<img src= "{% static 'img/profile-men.png' %}" alt="">
+		<img src="{% static 'img/profile-men.png' %}" alt="" />
 		{%endif%}
-		
 	</section>
 	<h3 class="h3_name">{{ user.name.upper }}</h3>
 	<h3 class="h3_role">Egresado</h3>
-	<br>
-	<br>
-	<br>
-	<hr class="hr_profile_graduates">
+	<br />
+	<br />
+	<br />
+	<hr class="hr_profile_graduates" />
 	<h3 class="h3_title">Tus datos</h3>
-	<br>
-	<br>
-	<br>
+	<br />
+	<br />
+	<br />
 	<section class="article_profile_personal_information">
 		<div class="telefono">
 			<i class="fa-solid fa-mobile-screen"></i>
 			<p class="title">Teléfono</p>
-			<p class="info">+57 {{user.phone}}</p>		
+			<p class="info">+57 {{user.phone}}</p>
 		</div>
 		<div class="usuario">
 			<i class="fa-regular fa-id-card"></i>
@@ -51,59 +49,59 @@
 			<p class="info">Ingeniería de sistemas</p>
 		</div>
 	</section>
-	<br>
-	<br>
-	<br>
-	<hr class="hr_profile_graduates">
+	<br />
+	<br />
+	<br />
+	<hr class="hr_profile_graduates" />
 	<h3 class="h3_title">Tus datos Laborales</h3>
-	<br>
-	<br>
-	<br>
+	<br />
+	<br />
+	<br />
 	<section class="article_profile_personal_information">
 		<div class="rango_salario">
 			<i class="fa-solid fa-money-bill"></i>
 			<p class="title">Tú rango salarial actual</p>
-			<p class="info">$1.000.000 - $3.000.000</p>
+			<p class="info">{{graduate.salary_range}}</p>
 		</div>
 		<div class="experiencia laboral">
 			<i class="fa-solid fa-business-time"></i>
 			<p class="title">Experenncia laboral</p>
-			<p class="info">1 año</p>
+			<p class="info" >{{graduate.work_experience}}</p>
 		</div>
 		<div class="cv">
 			<i class="fa-solid fa-file"></i>
 			<p class="title">Hoja de vida</p>
-			<a class="info">Descargar</a>
+			<a class="info" href="{{ graduate.cv.url }}" download="True">Descargar</a>
 		</div>
 		<div class="cargo">
 			<i class="fa-brands fa-linkedin"></i>
 			<p class="title">Cargo</p>
-			<a class="info">Desarrollador Semi Senior</a>
+			<a class="info">{{graduate.position}}</a>
 		</div>
 		<div class="sector">
 			<i class="fa-sharp fa-solid fa-industry"></i>
 			<p class="title">Sector</p>
-			<a class="info">Tecnología</a>
+			<a class="info">{{job.sector}}</a>
 		</div>
 		<div class="empresa">
 			<i class="fa-solid fa-city"></i>
 			<p class="title">Empresa</p>
-			<a class="info">Microsoft</a>
+			<a class="info">{{job.sector}}</a>
 		</div>
 		<div class="tipo">
 			<i class="fa-solid fa-calendar-days"></i>
 			<p class="title">Tipo de empleo</p>
-			<a class="info">Jornada completa</a>
+			<a class="info">{{job.type}}</a>
 		</div>
 	</section>
-	<br>
-	<br>
-	<br>
-	<hr class="hr_profile_graduates">
+	<br />
+	<br />
+	<br />
+	<hr class="hr_profile_graduates" />
 	<h3 class="h3_title">Otros datos de interés</h3>
-	<br>
-	<br>
-	<br>
+	<br />
+	<br />
+	<br />
 	<section class="article_profile_personal_information">
 		<div class="info">
 			<i class="fa-solid fa-circle-info"></i>

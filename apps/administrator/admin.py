@@ -7,11 +7,14 @@ from .models import *
 class AdministrativeData(admin.ModelAdmin):
     list_display=('id','position')
 
-@admin.register(Comite)
+@admin.register(Committee)
 class ComiteData(admin.ModelAdmin):
-    list_display=('name','type')
+  list_display = ('id','name')
 
+@admin.register(ActType)  
+class ActTypeAdmin(admin.ModelAdmin):
+  list_display = ('id','name', 'committee')
 
-@admin.register(Act)
+@admin.register(Act)    
 class ActData(admin.ModelAdmin):
-    list_display=('id','title','type','date_actual')
+  list_display = ('id', 'title', 'type', 'description', 'current_date', 'modification_date', 'document', 'status', 'administrative_id', 'committee')
