@@ -1,0 +1,58 @@
+{% extends 'dashboard.html' %} {% load static %} {%block content%}
+<h2>Ingresa tus datos laborales</h2>
+<section class="graduates">
+  <form action="#" method="post" class="form">
+    <div class="form_group">
+      <label for="InputTitulo">Título profesional</label>
+      <input
+        type="text"
+        class="input_titulo"
+        placeholder="P. ej. Ingeniero de software "
+      />
+    </div>
+    <div class="form_group">
+      <label for="InputCargo">Cargo actual</label>
+      <input
+        type="text"
+        class="input_cargo"
+        placeholder="P. ej. Desarrollador Senior"
+      />
+    </div>
+    <div class="form_group">
+      <label for="InputTipo">Tipo de empleo</label>
+      <select class="select_tipo">
+        <option value="Selecciona una opción">Selecciona una opción</option>
+        <option value="Jornada completa">Jornada completa</option>
+        <option value="Jornada parcial">Jornada parcial</option>
+        <option value="Autónomo">Autónomo</option>
+        <option value="Profesional independiente">
+          Profesional independiente
+        </option>
+        <option value="Contrato temporal">Contrato temporal</option>
+        <option value="Contrato de prácticas">Contrato de prácticas</option>
+        <option value="Contrato de formación">Contrato de formación</option>
+        <option value="Temporal">Temporal</option>
+      </select>
+    </div>
+    <div class="form_group">
+      <label for="InputEmpresa">Empresa</label>
+      <input type="text" class="input_empresa" placeholder="P. ej. Microsoft" />
+    </div>
+    <div class="form_group">
+      <label for="InputSector">Sector</label>
+      <input type="text" class="input_sector" placeholder="P. ej. tecnología" />
+    </div>
+    <div class="form_group">
+      <label for="InputDescripción">Descripción</label>
+      <textarea class="textarea_descripcion" rows="3"></textarea>
+    </div>
+    <div class="form_group">
+      <label for="InputHoja">Hoja de vida</label>
+      <input type="file" class="input_hoja" accept=".pdf" />
+    </div>
+    <div class="form_group">
+      <button type="submit" class="button_send">Enviar</button>
+    </div>
+  </form>
+</section>
+{%endblock content%}

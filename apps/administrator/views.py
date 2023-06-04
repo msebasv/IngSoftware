@@ -109,3 +109,6 @@ class CreateAct(CreateView):
         response = super().form_valid(form)
         acta_id = self.object.id
         return JsonResponse({'acta_id': acta_id})
+    
+class CreateEvent(TemplateView):
+    template_name = 'data_event.html'
