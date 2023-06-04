@@ -6,7 +6,7 @@ from apps.user.models import User
 class Student(models.Model):
     semester = models.PositiveSmallIntegerField(verbose_name="Semester")
     major = models.CharField(max_length=250, null=False, verbose_name="Major")
-
+    completed = models.BooleanField(default=False, verbose_name='Completed')
     user_id = models.OneToOneField(User, on_delete=models.CASCADE, null=False, blank=False)
     class Meta:
         db_table = 'Student'        

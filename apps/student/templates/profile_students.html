@@ -1,0 +1,67 @@
+{% extends 'dashboard.html' %} {% load static %} {%block content%}
+<article class="article_profile">
+	<section class="article_profile_photo">
+		{% if user.gender == 'F' %}
+		<img src="{% static 'img/profile-woman.png' %}" alt="" />
+		{%else%}
+		<img src="{% static 'img/profile-men.png' %}" alt="" />
+		{%endif%}
+	</section>
+	<h3 class="h3_name">{{ user.name.upper }}</h3>
+	<h3 class="h3_role">Estudiante</h3>
+	<br />
+	<br />
+	<br />
+	<hr class="hr_profile_graduates" />
+	<h3 class="h3_title">Tus datos</h3>
+	<br />
+	<br />
+	<br />
+	<section class="article_profile_personal_information">
+		<div class="telefono">
+			<i class="fa-solid fa-mobile-screen"></i>
+			<p class="title">Teléfono</p>
+			<p class="info">+57 {{user.phone}}</p>
+		</div>
+		<div class="usuario">
+			<i class="fa-regular fa-id-card"></i>
+			<p class="title">Usuario</p>
+			<p class="info">{{user.username}}</p>
+		</div>
+		<div class="correo">
+			<i class="fa-solid fa-envelope"></i>
+			<p class="title">Correo</p>
+			<p class="info">{{user.email}}</p>
+		</div>
+		<div class="fecha_nacimiento">
+			<i class="fa-solid fa-cake-candles"></i>
+			<p class="title">Fecha Nacimiento</p>
+			<p class="info">{{user.birthday }}</p>
+		</div>
+		<div class="semestre">
+			<i class="fa-solid fa-calendar-days"></i>
+			<p class="title">Semestre</p>
+			<p class="info">{{student.semester}}</p>
+		</div>
+		<div class="carrera">
+			<i class="fa-solid fa-graduation-cap"></i>
+			<p class="title">Carrera</p>
+			<p class="info">{{student.major}}</p>
+		</div>
+	</section>
+	<br />
+	<br />
+	<br />
+	<h3 class="h3_title">Otros datos de interés</h3>
+	<br />
+	<br />
+	<br />
+	<section class="article_profile_personal_information">
+		<div class="info">
+			<i class="fa-solid fa-circle-info"></i>
+			<p class="title">Info</p>
+			<a class="info">Esta es información adicional</a>
+		</div>
+	</section>
+</article>
+{%endblock content%}

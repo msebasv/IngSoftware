@@ -113,6 +113,17 @@
                 <!-- Right caret icon -->
               </a>
             </li>
+            {% if student_results and not graduate_results %}
+            <li class="sidebar__item">
+              <a href="{% url 'students:profile' %}">
+                <i class="fa-solid fa-user"></i>
+                <!-- User icon -->
+                <p>Perfil</p>
+                <i class="fa-solid fa-caret-right"></i>
+              </a>
+            </li>
+            {% endif %}
+            {% if graduate_results %}
             <li class="sidebar__item">
               <a href="{% url 'graduates:profile' %}">
                 <i class="fa-solid fa-user"></i>
@@ -121,6 +132,7 @@
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
+            {% endif %}
           </ul>
           <hr />
           <ul class="sidebar__list">
@@ -145,6 +157,15 @@
               <a href="{% url 'administrator:list_act' %}">
                 <i class="fa-solid fa-file-pen"></i> 
                 <p>Lista Actas</p>
+                <i class="fa-solid fa-caret-right"></i>
+              </a>
+            </li>
+            {% endif %}
+            {% if student_results and not graduate_results and student_results.completed and not True %}
+            <li class="sidebar__item">
+              <a href="{% url 'students:early_Assessment' %}">
+                <i class="fa-solid fa-file-pen"></i> 
+                <p>Evaluación temprana</p>
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
