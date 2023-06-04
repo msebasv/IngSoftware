@@ -1,10 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView, DetailView, View, FormView
 from django.contrib import messages
 from django.db.models import F, Q
-from .models import Act, Committee, ActType
+from .models import Act, Committee, ActType , Administrative
 from apps.user.models import Event, Event_User, User
 from .forms import ActForm, EventForm
 import json
@@ -140,3 +140,28 @@ class CreateEvent(CreateView):
         event_user.save()
         
         return super().form_valid(form)
+
+class viewDataProfile(TemplateView):
+    model = Administrative
+    template_name = 'profile_administrative.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Obtener los resultados almacenados en la sesión del usuario
+        session_results = {
+            'administrative_results': self.request.session.get('administrative_results'),
+        }
+        # Agregar los resultados no nulos al contexto
+        context.update({key: value for key, value in session_results.items() if value})
+
+        # Obtener el usuario actual
+        user = self.request.user
+
+        # Obtener el objeto Student correspondiente al usuario actual
+        administrative = Administrative.objects.get(user_id=user)
+
+        context['administrator'] = administrative
+
+
+        return context

@@ -1,0 +1,69 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+{% block content %}
+<section class="student">
+  <h2 class="student_h2">Evaluación Temprana de Cursos</h2>
+  <p class="student_p">El presente cuestionario consta de doce (12) preguntas. Las respuestas se darán en una escala
+    valorativa de 1 a 4 donde 1 significa que está en Total desacuerdo (el peor caso) y 4 que está Totalmente de acuerdo
+    (el mejor caso).</p>
+  <form method="POST" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <section class="form_section">
+      <section class="form_section_evaluation">
+        <div>¿A quién deseas evaluar?</div>
+        <div>
+          {{ evaluation }}
+        </div>
+      </section>
+      {% for question in questions %}
+      <br>
+      <br>
+      <section class="form_section_questions">
+        <div class="questions">
+          {{ question }}
+        </div>
+        <div class="response">
+          <div class="opciones">
+            <div class="etiqueta">En total desacuerdo</div>
+            <div class="etiqueta_circles">
+              <div class="opciones_circle">
+                <h4>1</h4>
+                <label for="opcion1_{{ question.id }}" class="circulo"></label>
+                <input type="radio" id="opcion1_{{ question.id }}" name="respuesta_{{ question.id }}" value="1" required>
+              </div>
+              <div class="opciones_circle">
+                <h4>2</h4>
+                <label for="opcion2_{{ question.id }}" class="circulo"></label>
+                <input type="radio" id="opcion2_{{ question.id }}" name="respuesta_{{ question.id }}" value="2" required>
+              </div>
+              <div class="opciones_circle">
+                <h4>3</h4>
+                <label for="opcion3_{{ question.id }}" class="circulo"></label>
+                <input type="radio" id="opcion3_{{ question.id }}" name="respuesta_{{ question.id }}" value="3" required>
+              </div>
+              <div class="opciones_circle">
+                <h4>4</h4>
+                <label for="opcion4_{{ question.id }}" class="circulo"></label>
+                <input type="radio" id="opcion4_{{ question.id }}" name="respuesta_{{ question.id }}" value="4" required>
+              </div>
+            </div>
+            <div class="etiqueta">Totalmente de acuerdo</div>
+          </div>
+        </div>
+
+      </section>
+      {% endfor %}
+      <section class="form_group_button">
+        <button type="submit" class="button_send" onclick="mostrarAlerta()">Enviar</button>
+      </section>
+    </section>
+  </form>
+</section>
+
+<script>
+  function mostrarAlerta() {
+    alert("¡Evaluación registrada!");
+  }
+</script>
+
+{% endblock content %}
