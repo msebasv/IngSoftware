@@ -108,7 +108,7 @@ img {
 .right .right-text {
   height: 100%;
   position: relative;
-  transform: translate(30%, 35%);
+  transform: translate(30%, 30%);
 }
 
 .right-text img {
