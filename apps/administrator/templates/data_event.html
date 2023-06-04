@@ -1,57 +1,44 @@
 {% extends 'dashboard.html' %} {% load static %} {%block content%}
-<h2>Ingresa tus datos laborales</h2>
-<section class="graduates">
+<h2>Crea un nuevo evento</h2>
+<section class="Events">
   <form action="#" method="post" class="form">
     <div class="form_group">
-      <label for="InputTitulo">Título profesional</label>
-      <input
-        type="text"
-        class="input_titulo"
-        placeholder="P. ej. Ingeniero de software "
-      />
-    </div>
-    <div class="form_group">
-      <label for="InputCargo">Cargo actual</label>
-      <input
-        type="text"
-        class="input_cargo"
-        placeholder="P. ej. Desarrollador Senior"
-      />
-    </div>
-    <div class="form_group">
-      <label for="InputTipo">Tipo de empleo</label>
+      <label for="InputTipo">Tipo de evento</label>
       <select class="select_tipo">
         <option value="Selecciona una opción">Selecciona una opción</option>
-        <option value="Jornada completa">Jornada completa</option>
-        <option value="Jornada parcial">Jornada parcial</option>
-        <option value="Autónomo">Autónomo</option>
-        <option value="Profesional independiente">
-          Profesional independiente
-        </option>
-        <option value="Contrato temporal">Contrato temporal</option>
-        <option value="Contrato de prácticas">Contrato de prácticas</option>
-        <option value="Contrato de formación">Contrato de formación</option>
-        <option value="Temporal">Temporal</option>
+        <option value="Jornada completa">Tena 1</option>
+        <option value="Jornada completa">Tema 2</option>
+        <option value="Jornada completa">Tema 3</option>
       </select>
     </div>
     <div class="form_group">
-      <label for="InputEmpresa">Empresa</label>
-      <input type="text" class="input_empresa" placeholder="P. ej. Microsoft" />
+      <label for="InputTipo">Tema</label>
+      <select class="select_tipo">
+        <option value="Selecciona una opción">Selecciona un Tema</option>
+        <option value="Jornada completa">Tipo 1</option>
+        <option value="Jornada completa">Tipo 2</option>
+        <option value="Jornada completa">Tipo 3</option>
+      </select>
     </div>
     <div class="form_group">
-      <label for="InputSector">Sector</label>
-      <input type="text" class="input_sector" placeholder="P. ej. tecnología" />
+      <label for="InputCargo">Fecha de inicio</label>
+      <input
+        type="date"  class="input_cargo"/>
+    </div>
+    <div class="form_group">
+      <label for="InputHora_Inicio">Hora de inicio</label>
+      <input type="time" class="input_Hora_Inicio" />
+    </div>
+    <div class="form_group">
+      <label for="InputHora_Final">Hora de Finalizacion</label>
+      <input type="time" class="input_Hora_Final" />
     </div>
     <div class="form_group">
       <label for="InputDescripción">Descripción</label>
       <textarea class="textarea_descripcion" rows="3"></textarea>
     </div>
     <div class="form_group">
-      <label for="InputHoja">Hoja de vida</label>
-      <input type="file" class="input_hoja" accept=".pdf" />
-    </div>
-    <div class="form_group">
-      <button type="submit" class="button_send">Enviar</button>
+      <button type="submit" class="button_send">Agendar</button>
     </div>
   </form>
 </section>
