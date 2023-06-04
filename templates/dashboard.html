@@ -182,7 +182,7 @@
             </li>
             {% endif %}
             <!-- prettier-ignore -->
-            {% if student_results and not graduate_results and student_results.completed and not True %}
+            {% if student_results and not graduate_results and not student_results.completed %}
             <li class="sidebar__item">
               <a href="{% url 'students:early_Assessment' %}">
                 <i class="fa-solid fa-file-pen"></i>
