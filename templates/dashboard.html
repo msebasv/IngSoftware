@@ -1,10 +1,8 @@
 {% load static %}
 <!-- Load static files -->
-
 <!DOCTYPE html>
 <html lang="es">
   <!-- HTML document with Spanish language -->
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -144,6 +142,13 @@
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
+            <li class="sidebar__item">
+              <a href="{% url 'administrator:new_event' %}">
+                <i class="fa-solid fa-file-circle-plus"></i>
+                <p>Crear Evento</p>
+                <i class="fa-solid fa-caret-right"></i>
+              </a>
+            </li>
             {% endif %}
           </ul>
         </nav>
@@ -187,7 +192,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="{% static 'js/calendar.js' %}"></script>
     <script src="{% static 'js/es.js' %}"></script>
-    {% endif %}
     <script>
       document.addEventListener("DOMContentLoaded", function () {
       var calendarUI = document.getElementById("calendar");
@@ -222,6 +226,6 @@
           calendar.setOption('locale','es');
       });
     </script>
-    {% endblock extrajs %}
+    {% endif %} {% endblock extrajs %}
   </body>
 </html>

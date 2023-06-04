@@ -1,45 +1,57 @@
 {% extends 'dashboard.html' %} {% load static %} {%block content%}
 <h2>Crea un nuevo evento</h2>
 <section class="Events">
-  <form action="#" method="post" class="form">
+  <form action="#" method="post" class="form" id="eventForm">
+    {% csrf_token %} {% for field in form %}
     <div class="form_group">
-      <label for="InputTipo">Tipo de evento</label>
-      <select class="select_tipo">
-        <option value="Selecciona una opción">Selecciona una opción</option>
-        <option value="Jornada completa">Tena 1</option>
-        <option value="Jornada completa">Tema 2</option>
-        <option value="Jornada completa">Tema 3</option>
-      </select>
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }} {% for error in field.errors %}
+      <span class="error">{{ error }}</span>
+      {% endfor %}
     </div>
+    {% endfor %}
     <div class="form_group">
-      <label for="InputTipo">Tema</label>
-      <select class="select_tipo">
-        <option value="Selecciona una opción">Selecciona un Tema</option>
-        <option value="Jornada completa">Tipo 1</option>
-        <option value="Jornada completa">Tipo 2</option>
-        <option value="Jornada completa">Tipo 3</option>
-      </select>
-    </div>
-    <div class="form_group">
-      <label for="InputCargo">Fecha de inicio</label>
-      <input
-        type="date"  class="input_cargo"/>
-    </div>
-    <div class="form_group">
-      <label for="InputHora_Inicio">Hora de inicio</label>
-      <input type="time" class="input_Hora_Inicio" />
-    </div>
-    <div class="form_group">
-      <label for="InputHora_Final">Hora de Finalizacion</label>
-      <input type="time" class="input_Hora_Final" />
-    </div>
-    <div class="form_group">
-      <label for="InputDescripción">Descripción</label>
-      <textarea class="textarea_descripcion" rows="3"></textarea>
-    </div>
-    <div class="form_group">
-      <button type="submit" class="button_send">Agendar</button>
+      <button type="submit" class="button_send" id="submitBtn">Enviar</button>
     </div>
   </form>
 </section>
-{%endblock content%}
+
+{%endblock content%} {% comment %} FORM {% endcomment %} {% comment %}
+<div>
+  <label for="InputTipo">Tipo de evento</label>
+  <select class="select_tipo">
+    <option value="Selecciona una opción">Selecciona una opción</option>
+    <option value="Jornada completa">Tena 1</option>
+    <option value="Jornada completa">Tema 2</option>
+    <option value="Jornada completa">Tema 3</option>
+  </select>
+</div>
+<div class="form_group">
+  <label for="InputTipo">Tema</label>
+  <select class="select_tipo">
+    <option value="Selecciona una opción">Selecciona un Tema</option>
+    <option value="Jornada completa">Tipo 1</option>
+    <option value="Jornada completa">Tipo 2</option>
+    <option value="Jornada completa">Tipo 3</option>
+  </select>
+</div>
+<div class="form_group">
+  <label for="InputCargo">Fecha de inicio</label>
+  <input type="date" class="input_cargo" />
+</div>
+<div class="form_group">
+  <label for="InputHora_Inicio">Hora de inicio</label>
+  <input type="time" class="input_Hora_Inicio" />
+</div>
+<div class="form_group">
+  <label for="InputHora_Final">Hora de Finalizacion</label>
+  <input type="time" class="input_Hora_Final" />
+</div>
+<div class="form_group">
+  <label for="InputDescripción">Descripción</label>
+  <textarea class="textarea_descripcion" rows="3"></textarea>
+</div>
+<div class="form_group">
+  <button type="submit" class="button_send">Agendar</button>
+</div>
+{% endcomment %}

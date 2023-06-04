@@ -96,9 +96,9 @@ WSGI_APPLICATION = 'sieunbosque.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DBING',
+        'NAME': 'BASEING',
         'USER': 'root',
-        'PASSWORD': '0720',
+        'PASSWORD': '123456',
         'HOST': '127.0.0.1',
         'PORT': '3306'
     }

@@ -7,7 +7,6 @@
 	border: none;
 	outline: none;
 	caret-color: transparent;
-	
 }
 
 html {
@@ -123,15 +122,17 @@ a {
 	background-color: #f2f2f2;
 	font-size: 1.5rem;
 	display: none;
-	border: 3px solid #d6d5d5 ;
+	border: 3px solid #d6d5d5;
 }
-.log_out .log_out_menu{
+
+.log_out .log_out_menu {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
 	height: 100%;
 }
+
 .log_out .log_out_menu li {
 	display: flex;
 	justify-content: center;

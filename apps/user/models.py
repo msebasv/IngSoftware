@@ -79,9 +79,13 @@ class Event(models.Model):
     type = models.IntegerField(choices=TYPE_OPTIONS, verbose_name="Type")
     description = models.CharField(max_length=250, null=False, verbose_name="Description")
     subject = models.CharField(max_length=250, null=False, verbose_name="Titulo")
-    status = models.BooleanField(null=False, default=True, verbose_name="Status")
+    status = models.BooleanField(null=True, default=True, verbose_name="Status")
     class Meta:
         db_table = 'Event'
+    
+    def __str__(self):
+        return self.subject
+    
 
 class Event_User(models.Model):
     id_user=models.ForeignKey(User,on_delete=models.CASCADE, null=False, blank=False)
@@ -89,3 +93,7 @@ class Event_User(models.Model):
     permissions=models.CharField(max_length=250, null=False, verbose_name="permissions")
     class Meta:
         db_table = 'Event_User'
+    
+    def __str__(self):
+        return self.id_user.username
+    
