@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="{% static 'css/style-forms.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style-administrator.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style-table.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style-teacher.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
     {%block css_external%}{%endblock css_external%}
   </head>
 
@@ -123,6 +125,26 @@
               </a>
             </li>
             {% endif %}
+            {% if teacher_results %}
+            <li class="sidebar__item">
+              <a href="{% url 'teachers:profile' %}">
+                <i class="fa-solid fa-user"></i>
+                <!-- User icon -->
+                <p>Perfil</p>
+                <i class="fa-solid fa-caret-right"></i>
+              </a>
+            </li>
+            {% endif %}
+            {% if administrative_results %}
+            <li class="sidebar__item">
+              <a href="{% url 'administrator:profile' %}">
+                <i class="fa-solid fa-user"></i>
+                <!-- User icon -->
+                <p>Perfil</p>
+                <i class="fa-solid fa-caret-right"></i>
+              </a>
+            </li>
+            {% endif %}
             {% if graduate_results %}
             <li class="sidebar__item">
               <a href="{% url 'graduates:profile' %}">
@@ -166,6 +188,15 @@
               <a href="{% url 'students:early_Assessment' %}">
                 <i class="fa-solid fa-file-pen"></i> 
                 <p>Evaluación temprana</p>
+                <i class="fa-solid fa-caret-right"></i>
+              </a>
+            </li>
+            {% endif %}
+            {% if teacher_results %}
+            <li class="sidebar__item">
+              <a href="{% url 'teachers:results' %}">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                <p>Consulta resultados</p>
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>

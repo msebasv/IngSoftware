@@ -29,7 +29,8 @@ urlpatterns = [
     path('logout/', login_required(logoutUser), name='logout'),
     path('dashboard/graduates/',include(('apps.graduates.urls', 'graduates'))),
     path('dashboard/administrator/', include(('apps.administrator.urls', 'administrator'))),
-    path('dashboard/students/', include(('apps.student.urls', 'students')))
+    path('dashboard/students/', include(('apps.student.urls', 'students'))),
+    path('dashboard/teachers/', include(('apps.teacher.urls', 'teachers')))
 ]
 
 urlpatterns += [

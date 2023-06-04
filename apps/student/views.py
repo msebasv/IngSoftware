@@ -37,8 +37,6 @@ class early_Assessment(TemplateView):
                 teacher = Teacher.objects.filter(user_id=user_teacher_id).first()
                 if teacher:
                     evaluation = Evaluation.objects.create(teacher_id_id=teacher.id, Subject_id_id=subject_id)
-                    print('teacher_id:', teacher.id)
-                    print('subject_id:', subject_id)
                     for question in Question.objects.all():
                         answer = request.POST.get(f'respuesta_{question.id}')
                         Preg_Ev.objects.create(id_evaluation_id=evaluation.id, id_question_id=question.id, grade=answer)

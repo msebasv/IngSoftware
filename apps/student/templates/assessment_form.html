@@ -54,10 +54,16 @@
       </section>
       {% endfor %}
       <section class="form_group_button">
-        <button type="submit" class="button_send">Enviar</button>
+        <button type="submit" class="button_send" onclick="mostrarAlerta()">Enviar</button>
       </section>
     </section>
   </form>
 </section>
+
+<script>
+  function mostrarAlerta() {
+    alert("¡Evaluación registrada!");
+  }
+</script>
 
 {% endblock content %}
