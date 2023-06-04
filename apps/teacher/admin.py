@@ -10,3 +10,7 @@ class TeacherData(admin.ModelAdmin):
 @admin.register(Question)
 class TeacherData(admin.ModelAdmin):
     list_display=('title','category', 'required', 'status')
+
+@admin.register(Subject)
+class TeacherData(admin.ModelAdmin):
+    list_display=('name','description', 'schedule', 'classroom', 'status')
