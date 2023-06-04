@@ -51,15 +51,19 @@
   var acceptBtn = document.querySelector("#successModal .modal-footer button");
   var actaIdValue = "{{ acta_id }}";
 
+
   $(document).ready(function () {
     var committeeSelect = $("#id_committee");
     var actSelect = $("#id_type");
 
     // Obtener las opciones de acta disponibles para cada comité
-    var actOptionsByCommittee = {
-      1: [1, 3], // Opciones de acta para el Comité 1
-      2: [2], // Opción de acta para el Comité 2
-    };
+    //var actOptionsByCommittee = {
+    //  1: [1, 3], // Opciones de acta para el Comité 1
+    //  2: [2, 4], // Opción de acta para el Comité 2
+    //};
+
+    var actOptionsByCommittee = {{ act_types_by_committee|safe }};
+
 
     // Función para cargar las opciones de acta según el comité seleccionado
     function loadActOptions(committeeId) {
@@ -68,6 +72,7 @@
 
       // Obtener las opciones de acta correspondientes al comité seleccionado
       var options = actOptionsByCommittee[committeeId] || [];
+
 
       // Crear y añadir las opciones al select de acta
       options.forEach(function (actId) {

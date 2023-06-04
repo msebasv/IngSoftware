@@ -6,15 +6,18 @@ from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login, logout
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, ListView
 from .forms import FormLogin
+from .models import Event, Event_User
 from apps.administrator.models import Administrative
 from apps.student.models import Student
 from apps.graduates.models import Graduate
 from apps.teacher.models import Teacher
 # Create your views here.
 
-class Dashboard(TemplateView):
+class Dashboard(ListView):
+    # model = Event
+    model = Event_User
     template_name = 'dashboard.html'
 
     def get_context_data(self, **kwargs):
@@ -43,6 +46,11 @@ class Dashboard(TemplateView):
             self.request.session['teacher_results'] = list(teacher_results.values())
             context['teacher_results'] = teacher_results
         return context
+    
+    def get_queryset(self):
+        user = self.request.user
+        queryset = Event.objects.filter(event_user__id_user=user)
+        return queryset
 
 
 

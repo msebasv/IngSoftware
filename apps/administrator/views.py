@@ -2,8 +2,11 @@
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from django.views.generic import TemplateView, ListView, UpdateView, CreateView, DeleteView, DetailView, View, FormView
+from django.contrib import messages
+from django.db.models import F, Q
 from .models import Act, Committee, ActType , Administrative
-from .forms import ActForm
+from apps.user.models import Event, Event_User, User
+from .forms import ActForm, EventForm
 import json
 from django.http import JsonResponse
 # Create your views here.
@@ -12,7 +15,7 @@ class ListAct(ListView):
     model = Act
     template_name = 'list_act.html'
     context_object_name = 'acts'
-    paginate_by = 10
+    paginate_by = 2
     committees = Committee.objects.all()
 
     def get_context_data(self, **kwargs):
@@ -81,15 +84,18 @@ class CreateAct(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['act_types_by_committee'] = json.dumps(self.get_act_types_by_committee())
+        # Obtener los act_types_by_committee y convertirlos a una cadena JSON
+        act_types_by_committee = self.get_act_types_by_committee()
+        act_types_by_committee_json = json.dumps(act_types_by_committee)
+        
+        # Agregar la cadena JSON al contexto
+        context['act_types_by_committee'] = act_types_by_committee_json
                 # Obtener los resultados almacenados en la sesión del usuario
         session_results = {
             'administrative_results': self.request.session.get('administrative_results')
         }
-
         # Agregar los resultados no nulos al contexto
         context.update({key: value for key, value in session_results.items() if value})
-
         return context
 
     def get_act_types_by_committee(self):
@@ -104,6 +110,36 @@ class CreateAct(CreateView):
         response = super().form_valid(form)
         acta_id = self.object.id
         return JsonResponse({'acta_id': acta_id})
+    
+class CreateEvent(CreateView):
+    model = Event
+    template_name = 'data_event.html'
+    form_class = EventForm
+    success_url = reverse_lazy('dashboard')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        session_results = {
+            'administrative_results': self.request.session.get('administrative_results')
+        }
+        context.update({key: value for key, value in session_results.items() if value})
+        return context
+    
+    def form_valid(self, form):
+        event = form.save(commit=False)  # Guarda el formulario sin guardar en la base de datos
+        
+        # Obtén la instancia de User basada en el ID proporcionado en el formulario
+        user_id = self.request.POST.get('id_user')
+        user = User.objects.get(id=user_id)
+        
+        # Guarda el evento en la base de datos
+        event.save()
+        
+        # Crea una instancia de Event_User y asigna el User y Event correspondientes
+        event_user = Event_User(id_user=user, id_Event=event)
+        event_user.save()
+        
+        return super().form_valid(form)
 
 class viewDataProfile(TemplateView):
     model = Administrative

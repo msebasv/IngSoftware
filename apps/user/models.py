@@ -4,8 +4,6 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.hashers import make_password
 from datetime import date
 
-
-
 # Create your models here.
 class UserManager(BaseUserManager):
     def create_user(self, username, name, lastname, email, password=None, **extra_fields):
@@ -69,14 +67,25 @@ class User(AbstractBaseUser):
         db_table = 'User'
 
 class Event(models.Model):
-    date = models.DateField(auto_now=False, auto_now_add=False, null=False, verbose_name="Event Date")
-    time = models.TimeField(auto_now=False, auto_now_add=False, null=False, verbose_name="Event Time")
-    type = models.CharField(max_length=250, null=False, verbose_name="Type")
+    TYPE_OPTIONS = (
+        (1, 'Tipo 1'),
+        (2, 'Tipo 2'),
+        (3, 'Tipo 3')
+    )
+    date_init = models.DateField(auto_now=False, auto_now_add=False, null=True, verbose_name="Fecha Inicio")
+    time_init = models.TimeField(auto_now=False, auto_now_add=False, null=True, verbose_name="Hora Inicio")
+    date_finish = models.DateField(auto_now=False, auto_now_add=False, null=True, verbose_name="Fecha Fin")
+    time_finish = models.TimeField(auto_now=False, auto_now_add=False, null=True, verbose_name="Hora Fin")
+    type = models.IntegerField(choices=TYPE_OPTIONS, verbose_name="Type")
     description = models.CharField(max_length=250, null=False, verbose_name="Description")
-    subject = models.CharField(max_length=250, null=False, verbose_name="Subject")
-    status = models.BooleanField(null=False, default=True, verbose_name="Status")
+    subject = models.CharField(max_length=250, null=False, verbose_name="Titulo")
+    status = models.BooleanField(null=True, default=True, verbose_name="Status")
     class Meta:
         db_table = 'Event'
+    
+    def __str__(self):
+        return self.subject
+    
 
 class Event_User(models.Model):
     id_user=models.ForeignKey(User,on_delete=models.CASCADE, null=False, blank=False)
@@ -84,3 +93,7 @@ class Event_User(models.Model):
     permissions=models.CharField(max_length=250, null=False, verbose_name="permissions")
     class Meta:
         db_table = 'Event_User'
+    
+    def __str__(self):
+        return self.id_user.username
+    

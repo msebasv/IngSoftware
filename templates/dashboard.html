@@ -1,10 +1,8 @@
 {% load static %}
 <!-- Load static files -->
-
 <!DOCTYPE html>
 <html lang="es">
   <!-- HTML document with Spanish language -->
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,6 +28,7 @@
     <link rel="stylesheet" href="{% static 'css/style-table.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style-teacher.css' %}" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+    <link rel="icon" href="{% static 'img/LogoUEB.png' %}" type="image/png" />
     {%block css_external%}{%endblock css_external%}
   </head>
 
@@ -54,22 +53,19 @@
           <li>{{user.name.upper}}</li>
           <!-- Admin label -->
           <li>
-            <a class="header_list_second_button"
-              >
-
+            <a class="header_list_second_button">
               {% if user.gender == 'F' %}
-                <img  
-                  src="{% static 'img/profile-woman.png' %}"
-                  alt="Usuario imagen"
-                />
+              <img
+                src="{% static 'img/profile-woman.png' %}"
+                alt="Usuario imagen"
+              />
 
-                {% else %}
-                <img  
-                  src="{% static 'img/profile-men.png' %}"
-                  alt="Usuario imagen"
-                />
+              {% else %}
+              <img
+                src="{% static 'img/profile-men.png' %}"
+                alt="Usuario imagen"
+              />
               {%endif %}
-              
             </a>
             <!-- User profile image -->
             <div class="notifications">3</div>
@@ -94,7 +90,6 @@
           <!-- Logout link with an icon -->
         </li>
       </ul>
-  
     </div>
 
     <div class="container">
@@ -124,8 +119,7 @@
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
-            {% endif %}
-            {% if teacher_results %}
+            {% endif %} {% if teacher_results %}
             <li class="sidebar__item">
               <a href="{% url 'teachers:profile' %}">
                 <i class="fa-solid fa-user"></i>
@@ -134,8 +128,7 @@
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
-            {% endif %}
-            {% if administrative_results %}
+            {% endif %} {% if administrative_results %}
             <li class="sidebar__item">
               <a href="{% url 'administrator:profile' %}">
                 <i class="fa-solid fa-user"></i>
@@ -144,8 +137,7 @@
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
-            {% endif %}
-            {% if graduate_results %}
+            {% endif %} {% if graduate_results %}
             <li class="sidebar__item">
               <a href="{% url 'graduates:profile' %}">
                 <i class="fa-solid fa-user"></i>
@@ -166,8 +158,7 @@
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
-            {% endif %}
-            {% if administrative_results %}
+            {% endif %} {% if administrative_results %}
             <li class="sidebar__item">
               <a href="{% url 'administrator:new_act' %}">
                 <i class="fa-solid fa-file-circle-plus"></i>
@@ -177,22 +168,29 @@
             </li>
             <li class="sidebar__item">
               <a href="{% url 'administrator:list_act' %}">
-                <i class="fa-solid fa-file-pen"></i> 
+                <i class="fa-solid fa-file-pen"></i>
                 <p>Lista Actas</p>
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
-            {% endif %}
-            {% if student_results and not graduate_results and student_results.completed and not True %}
             <li class="sidebar__item">
-              <a href="{% url 'students:early_Assessment' %}">
-                <i class="fa-solid fa-file-pen"></i> 
-                <p>Evaluación temprana</p>
+              <a href="{% url 'administrator:new_event' %}">
+                <i class="fa-solid fa-file-circle-plus"></i>
+                <p>Crear Evento</p>
                 <i class="fa-solid fa-caret-right"></i>
               </a>
             </li>
             {% endif %}
-            {% if teacher_results %}
+            <!-- prettier-ignore -->
+            {% if student_results and not graduate_results and not student_results.completed %}
+            <li class="sidebar__item">
+              <a href="{% url 'students:early_Assessment' %}">
+                <i class="fa-solid fa-file-pen"></i>
+                <p>Evaluación temprana</p>
+                <i class="fa-solid fa-caret-right"></i>
+              </a>
+            </li>
+            {% endif %} {% if teacher_results %}
             <li class="sidebar__item">
               <a href="{% url 'teachers:results' %}">
                 <i class="fa-solid fa-magnifying-glass-chart"></i>
@@ -209,7 +207,7 @@
         <!-- Main content section -->
         {%block content%}
         <div class="container_welcome">
-          <h2>Bienvenido Usuario</h2>
+          <h2>Bienvenido {{user.name.upper}}</h2>
         </div>
         <div class="container_calendar">
           <h2>Calendario</h2>
@@ -219,7 +217,7 @@
       </main>
     </div>
 
-    <footer class="footer">  
+    <footer class="footer">
       <!-- Footer section -->
       <p class="footer__text">
         © 2023 Universidad el bosque. Vigilada Mineducación. Personería Jurídica
@@ -238,6 +236,45 @@
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static 'js/index.global.js' %}"></script>
     <!-- Load external JavaScript file -->
-    {% block extrajs %}{% endblock extrajs %}
+    {% block extrajs %} {% if request.path == '/dashboard/' %}
+    <!-- Archivo "calendar.js" solo incluido en la página del panel de control -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="{% static 'js/calendar.js' %}"></script>
+    <script src="{% static 'js/es.js' %}"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+      var calendarUI = document.getElementById("calendar");
+      var calendar = new FullCalendar.Calendar(calendarUI, {
+        headerToolbar: {
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
+        },
+        navLinks: true,
+        selectable: true,
+        businessHours: true,
+        events :[
+          {% for eventos in object_list %}
+            {
+              title: "{{ eventos.subject }}",
+              description: "{{ eventos.description }}",
+              start: '{{ eventos.date_init | date:"Y-m-d" }}',
+              end: '{{ eventos.date_finish | date:"Y-m-d" }}',
+            },
+          {% endfor %}
+        ],
+        eventClick: function(info) {
+        var eventTitle = info.event.title;
+        var eventStartDate = moment(info.event.start).format('Y-MM-DD');
+        var eventEndDate = moment(info.event.end).format('Y-MM-DD');
+        var eventDescription = info.event.extendedProps.description;
+        alert('Evento: ' + eventTitle +'\nFecha Inicio: '+ eventStartDate + '\nFecha Fin: '+ eventEndDate+'\nDescripción: ' + eventDescription);
+        },
+          });
+          calendar.render();
+          calendar.setOption('locale','es');
+      });
+    </script>
+    {% endif %} {% endblock extrajs %}
   </body>
 </html>
