@@ -29,7 +29,7 @@ DEBUG = False
 #Tengo miedo
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['sieunbosque.azurewebsites.net']
+ALLOWED_HOSTS = ['sieaunbosque.azurewebsites.net']
 
 
 # Application definition
