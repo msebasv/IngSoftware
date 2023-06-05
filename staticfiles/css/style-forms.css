@@ -1,0 +1,189 @@
+.form .form_section {
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+}
+
+.graduates .form h2 {
+  display: block;
+  padding: 10px 17px;
+  border-radius: 5px;
+  font-size: 2.5rem;
+}
+
+
+.form .form_group {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+}
+
+.form .form_group label {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.form .form_group input {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  height: 30px;
+  margin-top: 15px;
+  padding: 5px 5px 5px 20px;
+}
+
+.form .form_group select {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  height: 45px;
+  margin-top: 15px;
+  padding: 5px 5px 5px 20px;
+}
+
+.form .form_group textarea {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  height: 100px;
+  margin-top: 15px;
+  padding: 5px 5px 5px 20px;
+}
+
+.form .form_group .input_hoja {
+  border: none;
+}
+
+.form_group_button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button_send {
+  width: 25rem;
+  background-color: #82CD47;
+  color: white;
+  padding: 15px;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 15px;
+  margin-top: 30px;
+}
+
+.form .form_group select:hover {
+  -webkit-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+  -moz-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+  box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+  border: 2.5px solid #a0bbff;
+  cursor: pointer;
+}
+
+.form .form_group input:focus {
+  -webkit-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+  -moz-box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+  box-shadow: 0px 0px 0px 5px rgba(188, 206, 251, 1);
+  border: 2.5px solid #a0bbff;
+}
+
+.button_send:hover {
+  background-color: #6cb932;
+  cursor: pointer;
+}
+
+.h2_data_emp{
+  margin-top: 20px;
+  margin-bottom: 20px ;
+}
+.h2_data_lab{
+  margin-bottom: 20px;
+}
+
+.student_p{
+  font-size: 2rem;
+  margin-top: 30px;
+  margin-bottom: 30px; 
+  padding: 10px;
+}
+
+
+.form_section .form_section_evaluation{
+  font-size: 2rem;
+  border: 1px solid #C4DFDF;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width:800px;
+}
+
+.form_section .form_section_evaluation div:nth-child(1){
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 10px;
+  background-color: #C4DFDF;
+  height: 50px;
+  border: 3px solid #C4DFDF;
+  font-weight: bolder;
+}
+.form_section .form_section_evaluation div:nth-child(2){
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.form_section .form_section_evaluation select{
+  border: 1px solid #ced4da;
+  font-size: 2rem;
+  border-radius: 5px;
+  width: 90%;
+  padding: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  
+}
+
+.form_section .form_section_questions{
+  border: 2px solid #C4DFDF;
+  width: 50%;
+  margin:  0 auto;
+  border-radius: 20px;
+  display: grid;
+  font-size: 2rem;
+  overflow: hidden;
+  max-width: 800px;
+
+}
+.form_section .form_section_questions .questions{
+  padding: 20px;
+}
+.form_section .form_section_questions .response {
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.form_section .form_section_questions .opciones {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr; 
+  align-items: center;
+  justify-content: center;
+}
+
+.form_section .form_section_questions .opciones .etiqueta_circles {
+display: flex;
+justify-content: space-around;
+margin-left: 10px;
+margin-right: 10px;
+}
+
+@media (max-width: 1024px) {
+  .form_section .form_section_evaluation{
+    width: 90%;
+  }
+  .form_section .form_section_questions{
+    width: 90%;
+
+  }
+

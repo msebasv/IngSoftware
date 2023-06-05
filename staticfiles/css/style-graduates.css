@@ -1,0 +1,116 @@
+.article_profile {
+	border: 3px solid #C4DFDF;
+	background-color: #E3F4F4;
+	padding: 30px;
+	border-radius: 20px;
+}
+
+.article_profile .article_profile_photo {
+	display: flex;
+	justify-content: center;
+}
+
+.article_profile .article_profile_photo img {
+	width: 20.5rem;
+	border: 3px solid #C4DFDF;
+	padding: 20px;
+	border-radius: 20px;
+
+}
+
+.hr_profile_graduates {
+	width: 95%;
+	height: 4px;
+	background-color: #C4DFDF;
+	border-radius: 3px;
+	margin: 0 auto;
+
+}
+
+.article_profile .article_profile_personal_information {
+	display: grid;
+	grid-template-columns: 1fr;
+	border: 3px solid #C4DFDF;
+	margin: 0 auto;
+	padding: 20px;
+	border-radius: 15px;
+	font-size: 1.5rem;
+	max-width: 60%;
+	gap: 10px;
+}
+
+.article_profile .article_profile_personal_information div{
+	display: grid;
+	grid-template-columns: 0.3fr 6fr;
+	grid-template-rows: 1fr 1fr;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+	border: 3px solid #C4DFDF ;
+	overflow: hidden;
+	max-width: 100%;
+	border-radius: 15px;
+}
+.article_profile .article_profile_personal_information div .title{
+	text-align: start;
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+.article_profile .article_profile_personal_information div i{
+	text-align: end;
+	margin-right: 10px;
+	font-size: 1.8rem;
+}
+
+.article_profile .article_profile_personal_information div .info {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	margin: 10px;
+	text-align: center;
+	text-overflow: ellipsis; 
+	overflow: hidden; 
+}
+
+.article_profile .article_profile_employment_data {
+	display: grid;
+	grid-template-columns: 1fr;
+	border: 3px solid #C4DFDF;
+	margin: 0 auto;
+	padding: 20px;
+	border-radius: 15px;
+	font-size: 1.5rem;
+	max-width: 60%;
+	gap: 10px;
+}
+
+.article_profile .article_profile_outher_data {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	border: 3px solid #C4DFDF;
+	padding: 20px;
+	border-radius: 20px;
+}
+
+.h3_role {
+	text-align: center;
+	margin: 8px;
+	font-weight: 700;
+	font-size: 2rem;
+}
+
+.h3_name {
+	text-align: center;
+	margin: 20px;
+	font-weight: 700;
+	font-size: 2.5rem;
+}
+
+.h3_title {
+	position: relative;
+	top: 20px;
+	margin-left: 10px;
+	margin-top: 20px;
+	font-weight: 700;
+	font-size: 2.5rem;
+	text-align: center;
+}

@@ -1,0 +1,59 @@
+.article_results {
+	overflow: hidden;
+	width: 100%;
+
+}
+
+.article_results .article_results_title {
+	text-align: center;
+	padding: 30px;
+}
+
+.article_results .article_results_content {
+	overflow: hidden;
+	border: 3px solid #C4DFDF;
+	padding: 30px;
+	width: 80%;
+	margin: 0 auto;
+	border-radius: 20px;
+}
+
+.article_results_questions {
+	width: 100%;
+}
+
+
+.questions_table {
+	width: 85%;
+	border-collapse: collapse;
+	border: 3px solid #C4DFDF;
+	margin: 0 auto;
+	font-size: 1.5rem;
+	border-radius: 20px;
+}
+
+.questions_table th {
+	background-color: #C4DFDF;
+	padding: 20px;
+	text-align: left;
+	text-align: center;
+}
+
+.questions_table td:first-child {
+	text-align: center;
+	border: 2px solid #C4DFDF;
+}
+
+.questions_table td {
+	padding: 20px;
+	border: 2px solid #C4DFDF;
+}
+
+.questions_table tr:last-child td {
+	border-bottom: none;
+	
+}
+
+.questions_table tr:hover {
+	background-color: #f9f9f9;
+}
