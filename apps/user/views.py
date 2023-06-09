@@ -53,8 +53,6 @@ class Dashboard(ListView):
         return queryset
 
 
-
-
 class Login(FormView):
     template_name = 'index.html'
     form_class = FormLogin
@@ -64,13 +62,44 @@ class Login(FormView):
     @method_decorator(never_cache)
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return HttpResponseRedirect(self.get_success_url())
+            return self.redirect_to_next_page(request)
         else:
             return super(Login, self).dispatch(request, *args, **kwargs)
 
+    def redirect_to_next_page(self, request):
+        next_page = request.GET.get('next')
+        if next_page:
+            return HttpResponseRedirect(next_page)
+        else:
+            return HttpResponseRedirect(self.get_success_url())
+        
     def form_valid(self, form):
-        login(self.request, form.get_user())
-        return super(Login, self).form_valid(form)
+        print("Formulario válido")
+        user = form.get_user()
+        if user is None:
+            print("Error: Usuario no encontrado")
+        else:
+            print("USUARIO ENCONTRADO")
+            login(self.request, user)
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print("Formulario inválido")
+        return super().form_invalid(form)
+
+    # def get_user(self):
+    #     print("Obteniendo usuario")
+    #     username = self.request.POST.get('username')
+    #     password = self.request.POST.get('password')
+    #     print("Username:", username)
+    #     print("Password:", password)
+    #     user = authenticate(username=username, password=password)
+    #     if user is not None and check_password(password, user.password):
+    #         print("Usuario válido")
+    #         return user
+    #     else:
+    #         print("Error: Usuario no encontrado o contraseña incorrecta")
+    #         return None
 
 
 def logoutUser(request):

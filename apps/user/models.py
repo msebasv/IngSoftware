@@ -17,7 +17,7 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, username, name, lastname, email, password, **extra_fields):
         user = self.create_user(username=username, name=name, lastname=lastname, email=email)
-        user.password = password
+        user.set_password(password)  # Utiliza set_password en lugar de asignar directamente la contraseña
         user.admin_user = True
         user.save()
         return user
@@ -45,7 +45,8 @@ class User(AbstractBaseUser):
     objects = UserManager()
     
     def save(self, *args, **kwargs):
-        self.password = make_password(self.password)
+        if not self.pk:
+            self.set_password(self.password)
         super().save(*args, **kwargs)
 
     USERNAME_FIELD = 'username'
